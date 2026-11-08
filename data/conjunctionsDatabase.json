@@ -1,0 +1,292 @@
+[
+  {
+    "id": "and",
+    "lemma": "and",
+    "ipa": "/ænd/",
+    "meaningTr": ["ve", "ile"],
+    "isRegular": true,
+    "transitivity": "conjunction",
+    "forms": {
+      "v1": "and",
+      "v2": "and",
+      "v3": "and",
+      "thirdPersonSingular": "and",
+      "presentParticiple": "and"
+    },
+    "spellingNotes": ["Benzer fikirleri veya öğeleri birbirine bağlayan en temel koordinat bağlacıdır."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "conjunction",
+        "titleTr": "Bağlaç: Ve",
+        "descriptionTr": "İki kelimeyi, cümteciği veya fikri birbirine ekler.",
+        "exampleEn": "I like coffee and tea.",
+        "exampleTr": "Kahve ve çay severim."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "or",
+    "lemma": "or",
+    "ipa": "/ɔːr/",
+    "meaningTr": ["veya", "yoksa"],
+    "isRegular": true,
+    "transitivity": "conjunction",
+    "forms": {
+      "v1": "or",
+      "v2": "or",
+      "v3": "or",
+      "thirdPersonSingular": "or",
+      "presentParticiple": "or"
+    },
+    "spellingNotes": ["Alternatifler veya seçenekler sunmak için kullanılır."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "conjunction",
+        "titleTr": "Bağlaç: Veya / Ya da",
+        "descriptionTr": "Seçenekler arasında tercih yapılacağını belirtir.",
+        "exampleEn": "Do you want tea or coffee?",
+        "exampleTr": "Çay mı yoksa kahve mi istersin?"
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "but",
+    "lemma": "but",
+    "ipa": "/bʌt/",
+    "meaningTr": ["ama", "fakat", "ancak"],
+    "isRegular": true,
+    "transitivity": "conjunction",
+    "forms": {
+      "v1": "but",
+      "v2": "but",
+      "v3": "but",
+      "thirdPersonSingular": "but",
+      "presentParticiple": "but"
+    },
+    "spellingNotes": ["Zıt veya çelişen fikirleri birbirine bağlar."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "conjunction",
+        "titleTr": "Bağlaç: Ama / Fakat",
+        "descriptionTr": "Önceki ifadeyle çelişen bir durumu bildirir.",
+        "exampleEn": "It is raining, but we will go out.",
+        "exampleTr": "Yağmur yağıyor ama dışarı çıkacağız."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "so",
+    "lemma": "so",
+    "ipa": "/səʊ/",
+    "meaningTr": ["bu yüzden", "öyleyse", "böylece"],
+    "isRegular": true,
+    "transitivity": "conjunction",
+    "forms": {
+      "v1": "so",
+      "v2": "so",
+      "v3": "so",
+      "thirdPersonSingular": "so",
+      "presentParticiple": "so"
+    },
+    "spellingNotes": ["Bir eylemin sonucunu veya etkisini bildirmek için kullanılır."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "conjunction",
+        "titleTr": "Bağlaç: Bu Yüzden / Sonuç Olarak",
+        "descriptionTr": "Sebep-sonuç ilişkisinde sonucu bağlar.",
+        "exampleEn": "I was tired, so I went to sleep early.",
+        "exampleTr": "Yorgundum, bu yüzden erken uyumaya gittim."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "because",
+    "lemma": "because",
+    "ipa": "/bɪˈkɒz/",
+    "meaningTr": ["çünkü"],
+    "isRegular": true,
+    "transitivity": "conjunction",
+    "forms": {
+      "v1": "because",
+      "v2": "because",
+      "v3": "because",
+      "thirdPersonSingular": "because",
+      "presentParticiple": "because"
+    },
+    "spellingNotes": ["Bir durumun gerekçesini veya sebebini açıklamak için kullanılır."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "conjunction",
+        "titleTr": "Bağlaç: Çünkü",
+        "descriptionTr": "Eylemin neden yapıldığını açıklar.",
+        "exampleEn": "I stayed home because it was raining.",
+        "exampleTr": "Evde kaldım çünkü yağmur yağıyordu."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "if",
+    "lemma": "if",
+    "ipa": "/ɪf/",
+    "meaningTr": ["eğer", "-se / -sa"],
+    "isRegular": true,
+    "transitivity": "conjunction",
+    "forms": {
+      "v1": "if",
+      "v2": "if",
+      "v3": "if",
+      "thirdPersonSingular": "if",
+      "presentParticiple": "if"
+    },
+    "spellingNotes": ["Şart, koşul veya ihtimal bildiren cümleleri kurar."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "conjunction",
+        "titleTr": "Bağlaç: Eğer / Şartıyla",
+        "descriptionTr": "Bir olayın gerçekleşmesinin başka bir şarta bağlı olduğunu belirtir.",
+        "exampleEn": "If you study hard, you will pass.",
+        "exampleTr": "Sıkı çalışırsan geçersin."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "when",
+    "lemma": "when",
+    "ipa": "/wen/",
+    "meaningTr": ["-diğinde", "ne zaman"],
+    "isRegular": true,
+    "transitivity": "conjunction",
+    "forms": {
+      "v1": "when",
+      "v2": "when",
+      "v3": "when",
+      "thirdPersonSingular": "when",
+      "presentParticiple": "when"
+    },
+    "spellingNotes": ["Zaman bağı kurmak veya soru sormak için kullanılır."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "conjunction",
+        "titleTr": "Bağlaç: -diğinde / -diği zaman",
+        "descriptionTr": "Bir eylemin gerçekleştiği zaman dilimini belirtir.",
+        "exampleEn": "Call me when you arrive.",
+        "exampleTr": "Vardığında beni ara."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "while",
+    "lemma": "while",
+    "ipa": "/waɪl/",
+    "meaningTr": ["iken", "dururken"],
+    "isRegular": true,
+    "transitivity": "conjunction",
+    "forms": {
+      "v1": "while",
+      "v2": "while",
+      "v3": "while",
+      "thirdPersonSingular": "while",
+      "presentParticiple": "while"
+    },
+    "spellingNotes": ["İki eylemin aynı anda gerçekleştiğini (eşzamanlılık) ifade eder."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "conjunction",
+        "titleTr": "Bağlaç: İken",
+        "descriptionTr": "Aynı anda yapılan iki işi birbirine bağlar.",
+        "exampleEn": "I was reading a book while she was cooking.",
+        "exampleTr": "O yemek yaparken ben kitap okuyordum."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "although",
+    "lemma": "although",
+    "ipa": "/ɔːlˈðəʊ/",
+    "meaningTr": ["-e rağmen", "her ne kadar"],
+    "isRegular": true,
+    "transitivity": "conjunction",
+    "forms": {
+      "v1": "although",
+      "v2": "although",
+      "v3": "although",
+      "thirdPersonSingular": "although",
+      "presentParticiple": "although"
+    },
+    "spellingNotes": ["Zıtlık bildiren (şaşırtıcı veya beklenmeyen durumları bağlayan) bağlaçtır."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "conjunction",
+        "titleTr": "Bağlaç: -e Rağmen",
+        "descriptionTr": "Beklenmeyen bir zıtlığı ifade eder.",
+        "exampleEn": "Although it was cold, we went for a walk.",
+        "exampleTr": "Hava soğuk olmasına rağmen yürüyüşe çıktık."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "since",
+    "lemma": "since",
+    "ipa": "/sɪns/",
+    "meaningTr": ["-den beri", "çünkü / madem ki"],
+    "isRegular": true,
+    "transitivity": "conjunction",
+    "forms": {
+      "v1": "since",
+      "v2": "since",
+      "v3": "since",
+      "thirdPersonSingular": "since",
+      "presentParticiple": "since"
+    },
+    "spellingNotes": ["Geçmişteki bir noktadan bugüne süren zamanı veya gerekçe (çünkü) belirtir."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "conjunction",
+        "titleTr": "Bağlaç: -den Beri / Madem ki",
+        "descriptionTr": "Zaman başlangıcı veya sebep bildirir.",
+        "exampleEn": "I have known him since 2020.",
+        "exampleTr": "Onu 2020'den beri tanıyorum."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  }
+]

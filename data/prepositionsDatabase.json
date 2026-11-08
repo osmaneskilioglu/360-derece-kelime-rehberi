@@ -1,0 +1,326 @@
+[
+  {
+    "id": "in",
+    "lemma": "in",
+    "ipa": "/ɪn/",
+    "meaningTr": ["içinde", "-de / -da"],
+    "isRegular": true,
+    "transitivity": "preposition",
+    "forms": {
+      "v1": "in",
+      "v2": "in",
+      "v3": "in",
+      "thirdPersonSingular": "in",
+      "presentParticiple": "in"
+    },
+    "spellingNotes": ["Yer, mekan sınırları ve geniş zaman dilimleri (ay, yıl, yüzyıl) için kullanılır."],
+    "wordFamily": [
+      {
+        "id": "inside",
+        "word": "inside",
+        "partOfSpeech": "preposition/adverb",
+        "polarity": "neutral",
+        "meaningTr": "içeride / içine",
+        "example": "Stay inside the building."
+      }
+    ],
+    "senses": [
+      {
+        "category": "preposition",
+        "titleTr": "Yer ve Zaman Edatı: İçinde / -de",
+        "descriptionTr": "Üç boyutlu bir alanın içinde bulunma veya zaman dilimini belirtme.",
+        "exampleEn": "She works in Istanbul. / We met in 2026.",
+        "exampleTr": "İstanbul'da çalışıyor. / 2026'da tanıştık."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": [
+      {
+        "collocation": "in time",
+        "meaningTr": "vaktinde, tam zamanında",
+        "exampleEn": "We arrived in time for the meeting.",
+        "exampleTr": "Toplantıya tam zamanında vardık."
+      }
+    ]
+  },
+  {
+    "id": "on",
+    "lemma": "on",
+    "ipa": "/ɒn/",
+    "meaningTr": ["üzerinde", "gününde"],
+    "isRegular": true,
+    "transitivity": "preposition",
+    "forms": {
+      "v1": "on",
+      "v2": "on",
+      "v3": "on",
+      "thirdPersonSingular": "on",
+      "presentParticiple": "on"
+    },
+    "spellingNotes": ["Yüzeye temas eden nesneler, günler ve tarihler için kullanılır."],
+    "wordFamily": [
+      {
+        "id": "onto",
+        "word": "onto",
+        "partOfSpeech": "preposition",
+        "polarity": "neutral",
+        "meaningTr": "üzerine doğru",
+        "example": "He jumped onto the stage."
+      }
+    ],
+    "senses": [
+      {
+        "category": "preposition",
+        "titleTr": "Temas ve Zaman Edatı: Üzerinde",
+        "descriptionTr": "Bir yüzeyin üstünde olma durumu veya gün bildirme.",
+        "exampleEn": "The report is on the desk. / See you on Monday.",
+        "exampleTr": "Rapor masanın üzerinde. / Pazartesi görüşürüz."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "at",
+    "lemma": "at",
+    "ipa": "/æt/",
+    "meaningTr": ["-de / -da (nokta/konum)", "saat"],
+    "isRegular": true,
+    "transitivity": "preposition",
+    "forms": {
+      "v1": "at",
+      "v2": "at",
+      "v3": "at",
+      "thirdPersonSingular": "at",
+      "presentParticiple": "at"
+    },
+    "spellingNotes": ["Spesifik bir noktayı, adresi veya kesin saatleri belirtir."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "preposition",
+        "titleTr": "Kesin Konum ve Zaman Edatı",
+        "descriptionTr": "Belirli bir noktada bulunma veya saat dilimi.",
+        "exampleEn": "I am at the office. / The call starts at 10 AM.",
+        "exampleTr": "Ofisteyim. / Görüşme saat 10'da başlıyor."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "to",
+    "lemma": "to",
+    "ipa": "/tuː/",
+    "meaningTr": ["-e / -a (yönelme)", "e doğru"],
+    "isRegular": true,
+    "transitivity": "preposition",
+    "forms": {
+      "v1": "to",
+      "v2": "to",
+      "v3": "to",
+      "thirdPersonSingular": "to",
+      "presentParticiple": "to"
+    },
+    "spellingNotes": ["Bir hedefe yönelme, yaklaşma veya fiillerden önce mastar (infinitive) eki olarak kullanılır."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "preposition",
+        "titleTr": "Yönelme Edatı: -e / -a",
+        "descriptionTr": "Bir yerden başka bir yere doğru hareket veya hedef.",
+        "exampleEn": "I am going to work. / Send an email to him.",
+        "exampleTr": "İşe gidiyorum. / Ona bir e-posta gönder."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "from",
+    "lemma": "from",
+    "ipa": "/frɒm/",
+    "meaningTr": ["-den / -dan (çıkış noktası)"],
+    "isRegular": true,
+    "transitivity": "preposition",
+    "forms": {
+      "v1": "from",
+      "v2": "from",
+      "v3": "from",
+      "thirdPersonSingular": "from",
+      "presentParticiple": "from"
+    },
+    "spellingNotes": ["Başlangıç yeri, köken veya ayrılma noktası bildirir."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "preposition",
+        "titleTr": "Ayrılma ve Menşe Edatı: -den / -dan",
+        "descriptionTr": "Bir şeyin başladığı yeri veya kaynağı ifade eder.",
+        "exampleEn": "She is from Ankara. / Data comes from the server.",
+        "exampleTr": "Ankaralıdır (Ankara'dandır). / Veri sunucudan geliyor."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "by",
+    "lemma": "by",
+    "ipa": "/baɪ/",
+    "meaningTr": ["tarafından", "yanında", "yoluyla"],
+    "isRegular": true,
+    "transitivity": "preposition",
+    "forms": {
+      "v1": "by",
+      "v2": "by",
+      "v3": "by",
+      "thirdPersonSingular": "by",
+      "presentParticiple": "by"
+    },
+    "spellingNotes": ["Konum (yakınında), araç (yoluyla) veya edilgen çatılarda faili belirtir."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "preposition",
+        "titleTr": "Araç / Konum Edatı",
+        "descriptionTr": "Bir eylemin kim tarafından yapıldığını veya yakınlığı belirtir.",
+        "exampleEn": "The report was written by Ali. / Sit by me.",
+        "exampleTr": "Rapor Ali tarafından yazıldı. / Yanıma otur."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "with",
+    "lemma": "with",
+    "ipa": "/wɪð/",
+    "meaningTr": ["ile", "beraber"],
+    "isRegular": true,
+    "transitivity": "preposition",
+    "forms": {
+      "v1": "with",
+      "v2": "with",
+      "v3": "with",
+      "thirdPersonSingular": "with",
+      "presentParticiple": "with"
+    },
+    "spellingNotes": ["Birliktelik, sahiplik (ile) veya araç belirtmek için kullanılır."],
+    "wordFamily": [
+      {
+        "id": "within",
+        "word": "within",
+        "partOfSpeech": "preposition",
+        "polarity": "neutral",
+        "meaningTr": "içerisinde (süre/mekan)",
+        "example": "Complete it within a week."
+      }
+    ],
+    "senses": [
+      {
+        "category": "preposition",
+        "titleTr": "Birliktelik Edatı: İle",
+        "descriptionTr": "Biri veya bir şey ile birlikte olmayı ya da araç kullanmayı gösterir.",
+        "exampleEn": "I work with a great team. / Cut it with a knife.",
+        "exampleTr": "Harika bir ekiple çalışıyorum. / Onu bir bıçakla kes."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "about",
+    "lemma": "about",
+    "ipa": "/əˈbaʊt/",
+    "meaningTr": ["hakkında", "yaklaşمة"],
+    "isRegular": true,
+    "transitivity": "preposition",
+    "forms": {
+      "v1": "about",
+      "v2": "about",
+      "v3": "about",
+      "thirdPersonSingular": "about",
+      "presentParticiple": "about"
+    },
+    "spellingNotes": ["Bir konu üzerine olma veya tahmini miktar (yaklaşık) anlamı katar."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "preposition",
+        "titleTr": "Konu Edatı: Hakkında",
+        "descriptionTr": "Bir düşüncenin, konunun veya olayın muhatabını belirtir.",
+        "exampleEn": "What is this project about? / There are about 50 users.",
+        "exampleTr": "Bu proje ne hakkında? / Yaklaşık 50 kullanıcı var."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "between",
+    "lemma": "between",
+    "ipa": "/bɪˈtwiːn/",
+    "meaningTr": ["arasında (iki şey/kişi)"],
+    "isRegular": true,
+    "transitivity": "preposition",
+    "forms": {
+      "v1": "between",
+      "v2": "between",
+      "v3": "between",
+      "thirdPersonSingular": "between",
+      "presentParticiple": "between"
+    },
+    "spellingNotes": ["Genellikle iki unsur arasındaki konumu veya ilişkiyi belirtir."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "preposition",
+        "titleTr": "Konum Edatı: Arasında",
+        "descriptionTr": "İki nesne veya kişi arasındaki orta alanı tanımlar.",
+        "exampleEn": "The agreement is between the two companies.",
+        "exampleTr": "Anlaşma iki şirket arasında."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "through",
+    "lemma": "through",
+    "ipa": "/θruː/",
+    "meaningTr": ["içinden, vasıtasıyla, boyunca"],
+    "isRegular": true,
+    "transitivity": "preposition",
+    "forms": {
+      "v1": "through",
+      "v2": "through",
+      "v3": "through",
+      "thirdPersonSingular": "through",
+      "presentParticiple": "through"
+    },
+    "spellingNotes": ["Bir nesnenin baştan sona içinden geçmeyi veya süreç/aracılık ifade eder."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "preposition",
+        "titleTr": "Süreç ve Geçiş Edatı",
+        "descriptionTr": "Bir tünelden, süreçten veya engelden geçişi tanımlar.",
+        "exampleEn": "We solved the bug through hard work.",
+        "exampleTr": "Sıkı çalışmayla hatayı çözdük."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  }
+]

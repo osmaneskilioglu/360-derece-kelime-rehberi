@@ -1,0 +1,273 @@
+[
+  {
+    "id": "time",
+    "lemma": "time",
+    "ipa": "/taɪm/",
+    "meaningTr": ["zaman", "süre", "kere"],
+    "isRegular": true,
+    "transitivity": "noun",
+    "forms": {
+      "v1": "time",
+      "v2": "timed",
+      "v3": "timed",
+      "thirdPersonSingular": "times",
+      "presentParticiple": "timing"
+    },
+    "spellingNotes": ["İngilizcede en çok kullanılan isimlerden biridir. Hem soyut süre hem de sayısal kere/kez anlamı taşır."],
+    "wordFamily": [
+      {
+        "id": "timely",
+        "word": "timely",
+        "partOfSpeech": "adjective",
+        "polarity": "positive",
+        "meaningTr": "zamanında, vakitli",
+        "example": "A timely response."
+      }
+    ],
+    "senses": [
+      {
+        "category": "noun",
+        "titleTr": "İsim: Zaman / Süre",
+        "descriptionTr": "Olayların geçirdiği akış veya ölçülebilir süre.",
+        "exampleEn": "Time flies fast. / We have enough time.",
+        "exampleTr": "Zaman hızlı geçiyor. / Yeterli zamanımız var."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [
+      {
+        "idiom": "ahead of time",
+        "meaningTr": "vaktinden önce, erkenden",
+        "exampleEn": "The project was finished ahead of time.",
+        "exampleTr": "Proje vaktinden önce bitti."
+      }
+    ],
+    "collocations": [
+      {
+        "collocation": "save time",
+        "meaningTr": "zaman kazanmak",
+        "exampleEn": "Automation saves time.",
+        "exampleTr": "Otomasyon zaman kazandırır."
+      }
+    ]
+  },
+  {
+    "id": "year",
+    "lemma": "year",
+    "ipa": "/jɪər/",
+    "meaningTr": ["yıl", "sene"],
+    "isRegular": true,
+    "transitivity": "noun",
+    "forms": {
+      "v1": "year",
+      "v2": "years",
+      "v3": "years",
+      "thirdPersonSingular": "years",
+      "presentParticiple": "yearing"
+    },
+    "spellingNotes": ["Dünyanın güneş etrafındaki bir tam turunu (365 günü) ifade eden zaman birimidir."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "noun",
+        "titleTr": "İsim: Yıl",
+        "descriptionTr": "On iki aylık periyot.",
+        "exampleEn": "This year is very productive.",
+        "exampleTr": "Bu yıl çok verimli geçiyor."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "people",
+    "lemma": "people",
+    "ipa": "/ˈpiː.pəl/",
+    "meaningTr": ["insanlar", "halk"],
+    "isRegular": true,
+    "transitivity": "noun",
+    "forms": {
+      "v1": "people",
+      "v2": "peoples",
+      "v3": "peoples",
+      "thirdPersonSingular": "peoples",
+      "presentParticiple": "peopling"
+    },
+    "spellingNotes": ["Kök olarak çoğul bir kelimedir (person kelimesinin çoğuludur)."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "noun",
+        "titleTr": "İsim: İnsanlar",
+        "descriptionTr": "Topluluğu oluşturan şahıslar.",
+        "exampleEn": "Many people attended the event.",
+        "exampleTr": "Etkinliğe pek çok insan katıldı."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "work",
+    "lemma": "work",
+    "ipa": "/wɜːk/",
+    "meaningTr": ["iş", "çalışma", "eser"],
+    "isRegular": true,
+    "transitivity": "both",
+    "forms": {
+      "v1": "work",
+      "v2": "worked",
+      "v3": "worked",
+      "thirdPersonSingular": "works",
+      "presentParticiple": "working"
+    },
+    "spellingNotes": ["Hem isim (iş/çalışma) hem de fiil (çalışmak) olarak kullanılır."],
+    "wordFamily": [
+      {
+        "id": "worker",
+        "word": "worker",
+        "partOfSpeech": "noun",
+        "polarity": "neutral",
+        "meaningTr": "çalışan, işçi",
+        "example": "Team worker."
+      }
+    ],
+    "senses": [
+      {
+        "category": "noun",
+        "titleTr": "İsim: İş / Çalışma",
+        "descriptionTr": "Efor sarf edilen mesleki veya bireysel faaliyet.",
+        "exampleEn": "I have a lot of work to do.",
+        "exampleTr": "Yapacak çok işim var."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": [
+      {
+        "collocation": "hard work",
+        "meaningTr": "sıkı çalışma",
+        "exampleEn": "Success requires hard work.",
+        "exampleTr": "Başarı sıkı çalışma gerektirir."
+      }
+    ]
+  },
+  {
+    "id": "life",
+    "lemma": "life",
+    "ipa": "/laɪf/",
+    "meaningTr": ["yaşam", "hayat"],
+    "isRegular": true,
+    "transitivity": "noun",
+    "forms": {
+      "v1": "life",
+      "v2": "lives",
+      "v3": "lives",
+      "thirdPersonSingular": "lifes",
+      "presentParticiple": "lifing"
+    },
+    "spellingNotes": ["Çoğul hali 'lives' olarak değişir."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "noun",
+        "titleTr": "İsim: Hayat / Yaşam",
+        "descriptionTr": "Canlıların varlık süreci ve deneyimleri.",
+        "exampleEn": "Life is full of opportunities.",
+        "exampleTr": "Hayat fırsatlarla dolu."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "system",
+    "lemma": "system",
+    "ipa": "/ˈsɪs.təm/",
+    "meaningTr": ["sistem", "düzen"],
+    "isRegular": true,
+    "transitivity": "noun",
+    "forms": {
+      "v1": "system",
+      "v2": "systems",
+      "v3": "systems",
+      "thirdPersonSingular": "systems",
+      "presentParticiple": "systeming"
+    },
+    "spellingNotes": ["Teknolojik ve kurumsal altyapıları tanımlayan temel terimdir."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "noun",
+        "titleTr": "İsim: Sistem",
+        "descriptionTr": "Düzenli bir şekilde çalışan yapılar bütünü.",
+        "exampleEn": "The IT system is running smoothly.",
+        "exampleTr": "BT sistemi sorunsuz çalışıyor."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "problem",
+    "lemma": "problem",
+    "ipa": "/ˈprɒb.ləm/",
+    "meaningTr": ["problem", "sorun"],
+    "isRegular": true,
+    "transitivity": "noun",
+    "forms": {
+      "v1": "problem",
+      "v2": "problems",
+      "v3": "problems",
+      "thirdPersonSingular": "problems",
+      "presentParticiple": "probleming"
+    },
+    "spellingNotes": ["Çözülmesi gereken güçlük veya aksaklık."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "noun",
+        "titleTr": "İsim: Problem / Sorun",
+        "descriptionTr": "Engel teşkil eden durum.",
+        "exampleEn": "We solved the technical problem.",
+        "exampleTr": "Teknik sorunu çözdük."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "school",
+    "lemma": "school",
+    "ipa": "/skuːl/",
+    "meaningTr": ["okul"],
+    "isRegular": true,
+    "transitivity": "noun",
+    "forms": {
+      "v1": "school",
+      "v2": "schooled",
+      "v3": "schooled",
+      "thirdPersonSingular": "schools",
+      "presentParticiple": "schooling"
+    },
+    "spellingNotes": ["Eğitim kurumu."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "noun",
+        "titleTr": "İsim: Okul",
+        "descriptionTr": "Eğitim ve öğretim verilen kurum.",
+        "exampleEn": "Children go to school every weekday.",
+        "exampleTr": "Çocuklar hafta içi her gün okula gider."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  }
+]

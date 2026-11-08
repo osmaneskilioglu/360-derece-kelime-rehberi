@@ -1,0 +1,155 @@
+[
+  {
+    "id": "as_soon_as",
+    "lemma": "as soon as",
+    "category": "conjunction",
+    "meaningTr": ["...yapar yapmaz", "hemen ardından"],
+    "usageNote": "İki olay arasındaki hızı ve ardışıklığı vurgular.",
+    "exampleEn": "I will call you as soon as I finish my work.",
+    "exampleTr": "İşimi bitirir bitirmez seni arayacağım."
+  },
+  {
+    "id": "take_seriously",
+    "lemma": "take ... seriously",
+    "category": "collocation",
+    "meaningTr": ["bir şeyi ciddiye almak"],
+    "usageNote": "Kariyer ve sorumluluklar için kurumsal hayatta çok sık kullanılır.",
+    "exampleEn": "You need to take your career seriously.",
+    "exampleTr": "Kariyerini ciddiye alman gerekiyor."
+  },
+  {
+    "id": "piece_of_cake",
+    "lemma": "piece of cake",
+    "category": "idiom",
+    "meaningTr": ["çocuk oyuncağı", "çok kolay iş"],
+    "usageNote": "Zahmetsizce yapılan işleri anlatmak için kullanılan mecazi bir deyimdir.",
+    "exampleEn": "Don't worry about the exam, it's a piece of cake.",
+    "exampleTr": "Sınav için endişelenme, çocuk oyuncağı."
+  },
+  {
+    "id": "under_the_weather",
+    "lemma": "under the weather",
+    "category": "idiom",
+    "meaningTr": ["halsiz", "biraz hasta", "keyifsiz"],
+    "usageNote": "Hafif kırgınlık ve yorgunluk durumlarında söylenir.",
+    "exampleEn": "I'm feeling a bit under the weather today.",
+    "exampleTr": "Bugün kendimi biraz halsiz hissediyorum."
+  },
+  {
+    "id": "make_a_decision",
+    "lemma": "make a decision",
+    "category": "collocation",
+    "meaningTr": ["karar vermek"],
+    "usageNote": "İngilizcede 'give' değil, her zaman 'make a decision' fiili kullanılır.",
+    "exampleEn": "It's hard to make a decision under pressure.",
+    "exampleTr": "Baskı altında karar vermek zordur."
+  },
+  {
+    "id": "nevertheless",
+    "lemma": "nevertheless",
+    "category": "conjunction",
+    "meaningTr": ["buna rağmen", "yine de", "her halükarda"],
+    "usageNote": "'However' kelimesine kıyasla daha resmi ve ağırlıklı bir bağlaçtır.",
+    "exampleEn": "The risk was high; nevertheless, the board approved the project.",
+    "exampleTr": "Risk yüksekti; buna rağmen yönetim kurulu projeyi onayladı."
+  },
+  {
+    "id": "as_far_as_i_know",
+    "lemma": "as far as i know",
+    "category": "phrase",
+    "meaningTr": ["bildiğim kadarıyla"],
+    "usageNote": "Bilgi paylaşırken veya tahmin yürütürken kibar bir başlangıç sağlar.",
+    "exampleEn": "As far as I know, the meeting is postponed.",
+    "exampleTr": "Bildiğim kadarıyla toplantı ertelendi."
+  },
+  {
+    "id": "call_it_a_day",
+    "lemma": "call it a day",
+    "category": "idiom",
+    "meaningTr": ["paydos etmek", "bugünlük bu kadar"],
+    "usageNote": "Mesaiyi veya günlük aktiviteyi sonlandırırken kullanılır.",
+    "exampleEn": "We have been working for hours; let's call it a day.",
+    "exampleTr": "Saatlerdir çalışıyoruz; hadi bugünlük bu kadar olsun."
+  },
+  {
+    "id": "so_far_so_good",
+    "lemma": "so far so good",
+    "category": "phrase",
+    "meaningTr": ["şimdiye kadar her şey yolunda"],
+    "usageNote": "Devam eden bir sürecin şimdilik olumlu gittiğini belirtir.",
+    "exampleEn": "How is your new role going? - So far, so good.",
+    "exampleTr": "Yeni görevin nasıl gidiyor? - Şimdiye kadar her şey yolunda."
+  },
+  {
+    "id": "play_it_by_ear",
+    "lemma": "play it by ear",
+    "category": "idiom",
+    "meaningTr": ["duruma göre hareket etmek", "akışına bırakmak"],
+    "usageNote": "Önceden plan yapmadan anlık gelişmelere göre karar almak.",
+    "exampleEn": "We don't have a fixed itinerary; we'll play it by ear.",
+    "exampleTr": "Kesin bir programımız yok; akışına bırakacağız."
+  },
+  {
+    "id": "consequently",
+    "lemma": "consequently",
+    "category": "conjunction",
+    "meaningTr": ["neticesinde", "sonuç olarak"],
+    "usageNote": "Kurumsal raporlarda 'so' yerine tercih edilen profesyonel bağlaçtır.",
+    "exampleEn": "The servers crashed; consequently, the service was interrupted.",
+    "exampleTr": "Sunucular çöküntü yaşadı; neticesinde hizmet kesintiye uğradı."
+  },
+  {
+    "id": "provided_that",
+    "lemma": "provided that",
+    "category": "conjunction",
+    "meaningTr": ["...şartıyla", "...olduğu takdirde"],
+    "usageNote": "Müzakerelerde ve sözleşmelerde koşul belirtmek için kritiktir.",
+    "exampleEn": "We can approve the budget, provided that you deliver on time.",
+    "exampleTr": "Zamanında teslim etmeniz şartıyla bütçeyi onaylayabiliriz."
+  },
+  {
+    "id": "pan_out",
+    "lemma": "pan out",
+    "category": "phrasal_verb",
+    "meaningTr": ["sonuçlanmak", "planlandığı gibi gitmek"],
+    "usageNote": "Projelerin veya girişimlerin neticesini değerlendirirken kullanılır.",
+    "exampleEn": "Let's see how the negotiations pan out.",
+    "exampleTr": "Müzakerelerin nasıl sonuçlanacağını görelim."
+  },
+  {
+    "id": "follow_through",
+    "lemma": "follow through",
+    "category": "phrasal_verb",
+    "meaningTr": ["işin sonunu getirmek", "takipçisi olmak"],
+    "usageNote": "Verilen sözlerin veya görevlerin arkasında durma kararlılığı.",
+    "exampleEn": "It is important to follow through on all customer requests.",
+    "exampleTr": "Tüm müşteri taleplerinin takipçisi olmak önemlidir."
+  },
+  {
+    "id": "get_down_to_business",
+    "lemma": "get down to business",
+    "category": "idiom",
+    "meaningTr": ["sadede gelmek", "esas işe koyulmak"],
+    "usageNote": "Toplantılarda giriş sohbetini bitirip asıl konuya odaklanırken söylenir.",
+    "exampleEn": "Now that everyone is here, let's get down to business.",
+    "exampleTr": "Herkes burada olduğuna göre, hadi sadede gelelim (esas işimize koyulalım)."
+  },
+  {
+    "id": "hit_the_nail_on_the_head",
+    "lemma": "hit the nail on the head",
+    "category": "idiom",
+    "meaningTr": ["tam basmak", "sorunun özünü tam 12'den vurmak"],
+    "usageNote": "Bir kişinin bir durumu veya sorunun kök nedenini kusursuz özetlediğinde kullanılır.",
+    "exampleEn": "You hit the nail on the head with that analysis.",
+    "exampleTr": "Bu analizle sorunun tam özüne parmak bastın (12'den vurdun)."
+  },
+  {
+    "id": "devil_is_in_the_detail",
+    "lemma": "the devil is in the detail",
+    "category": "idiom",
+    "meaningTr": ["şeytan detayda gizlidir", "küçük ayrıntılar işi zorlaştırabilir"],
+    "usageNote": "Projelerde veya sözleşmelerde küçük detayların gözden kaçmaması gerektiğini vurgular.",
+    "exampleEn": "Don't rush the contract review; the devil is in the detail.",
+    "exampleTr": "Sözleşme incelemesini aceleye getirme; şeytan detayda gizlidir."
+  }
+]

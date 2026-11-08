@@ -1,0 +1,525 @@
+[
+  {
+    "id": "look",
+    "lemma": "look",
+    "ipa": "/lʊk/",
+    "meaningTr": ["bakmak", "görünmek", "bakış (isim)", "tarz / stil (isim)"],
+    "isRegular": true,
+    "transitivity": "both",
+    "forms": {
+      "v1": "look",
+      "v2": "looked",
+      "v3": "looked",
+      "thirdPersonSingular": "looks",
+      "presentParticiple": "looking"
+    },
+    "spellingNotes": [
+      "Look hem fiil (eylem) hem de isim (ad) olarak görev yapan temel bir kelimedir."
+    ],
+    "wordFamily": [
+      {
+        "id": "looker",
+        "word": "looker",
+        "partOfSpeech": "noun",
+        "polarity": "positive",
+        "meaningTr": "bakan kimse / çekici güzel kimse",
+        "example": "She is a real looker."
+      },
+      {
+        "id": "outlook",
+        "word": "outlook",
+        "partOfSpeech": "noun",
+        "polarity": "positive",
+        "meaningTr": "bakış açısı, gelecek tahmini",
+        "example": "Economic outlook is positive."
+      },
+      {
+        "id": "overlook",
+        "word": "overlook",
+        "partOfSpeech": "verb",
+        "polarity": "negative",
+        "meaningTr": "gözden kaçırmak, üstten görmek",
+        "example": "Do not overlook small details."
+      }
+    ],
+    "senses": [
+      {
+        "category": "verb",
+        "titleTr": "Fiil Olarak: Bakmak / Görünmek",
+        "descriptionTr": "Gözü bir şeye yöneltmek veya dış görünüş sergilemek.",
+        "exampleEn": "Look at the whiteboard. / You look tired today.",
+        "exampleTr": "Yazı tahtasına bak. / Bugün yorgun görünüyorsun."
+      }
+    ],
+    "phrasalVerbs": [
+      {
+        "phrase": "look after",
+        "meaningTr": "Göz kulak olmak, bakımını üstlenmek",
+        "exampleEn": "Can you look after my cat?",
+        "exampleTr": "Kedime göz kulak olabilir misin?"
+      },
+      {
+        "phrase": "look for",
+        "meaningTr": "Aramak",
+        "exampleEn": "I am looking for my keys.",
+        "exampleTr": "Anahtarlarımı arıyorum."
+      },
+      {
+        "phrase": "look forward to",
+        "meaningTr": "Dört gözle beklemek",
+        "exampleEn": "I am looking forward to meeting you.",
+        "exampleTr": "Sizinle tanışmayı dört gözle bekliyorum."
+      }
+    ],
+    "idioms": [
+      {
+        "idiom": "look alive",
+        "meaningTr": "Çabuk ol!, canlan biraz!",
+        "exampleEn": "Look alive, we are running out of time!",
+        "exampleTr": "Acele et, vaktimiz tükeniyor!"
+      }
+    ],
+    "collocations": [
+      {
+        "collocation": "take a look",
+        "meaningTr": "Göz atmak",
+        "exampleEn": "Take a look at the report.",
+        "exampleTr": "Rapora bir göz at."
+      }
+    ]
+  },
+  {
+    "id": "over",
+    "lemma": "over",
+    "ipa": "/ˈəʊ.vər/",
+    "meaningTr": ["üzerinde", "ötesinde", "aşırı", "bitmiş", "tekrar"],
+    "isRegular": true,
+    "transitivity": "both",
+    "forms": {
+      "v1": "over",
+      "v2": "overed",
+      "v3": "overed",
+      "thirdPersonSingular": "overs",
+      "presentParticiple": "overing"
+    },
+    "spellingNotes": [
+      "Over kelimesi tek başına zarf veya edat olmasının yanı sıra, kelimelerin önüne gelerek anlamı değiştiren güçlü bir ön ek (prefix) ve phrasal verb bileşenidir."
+    ],
+    "wordFamily": [
+      {
+        "id": "overdo",
+        "word": "overdo",
+        "partOfSpeech": "verb",
+        "polarity": "negative",
+        "meaningTr": "Aşırıya kaçmak, abartmak",
+        "example": "Do not overdo it."
+      },
+      {
+        "id": "overthink",
+        "word": "overthink",
+        "partOfSpeech": "verb",
+        "polarity": "negative",
+        "meaningTr": "Aşırı düşünmek, kafaya takmak",
+        "example": "Stop trying to overthink everything."
+      },
+      {
+        "id": "overcome",
+        "word": "overcome",
+        "partOfSpeech": "verb",
+        "polarity": "positive",
+        "meaningTr": "Bir zorluğun üstesinden gelmek, yenmek",
+        "example": "She overcame her fears."
+      },
+      {
+        "id": "overall",
+        "word": "overall",
+        "partOfSpeech": "adjective/adverb",
+        "polarity": "positive",
+        "meaningTr": "Genel, toplam",
+        "example": "The overall cost."
+      }
+    ],
+    "senses": [
+      {
+        "category": "preposition",
+        "titleTr": "Edat / Zarf Olarak: Üzerinde / Aşırı",
+        "descriptionTr": "Bir şeyin üzerinden temas etmeden geçme veya miktar aşırılığı.",
+        "exampleEn": "The helicopter flew over the city.",
+        "exampleTr": "Helikopter şehrin üzerinden uçtu."
+      }
+    ],
+    "phrasalVerbs": [
+      {
+        "phrase": "get over",
+        "meaningTr": "Atlatmak (hastalık/üzüntü)",
+        "exampleEn": "It took her months to get over the breakup.",
+        "exampleTr": "Ayrılığı atlatması aylarını aldı."
+      },
+      {
+        "phrase": "take over",
+        "meaningTr": "Yönetimi devralmak",
+        "exampleEn": "The vice president will take over the company.",
+        "exampleTr": "Başkan yardımcısı şirketin yönetimini devralacak."
+      }
+    ],
+    "idioms": [
+      {
+        "idiom": "over the moon",
+        "meaningTr": "Havalara uçmak, çok mutlu olmak",
+        "exampleEn": "She was over the moon.",
+        "exampleTr": "Havalara uçtu."
+      }
+    ],
+    "collocations": []
+  },
+  {
+    "id": "go",
+    "lemma": "go",
+    "ipa": "/ɡəʊ/",
+    "meaningTr": ["gitmek", "seyahat etmek"],
+    "isRegular": false,
+    "transitivity": "intransitive",
+    "forms": {
+      "v1": "go",
+      "v2": "went",
+      "v3": "gone",
+      "thirdPersonSingular": "goes",
+      "presentParticiple": "going"
+    },
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "verb",
+        "titleTr": "Fiil Olarak: Gitmek",
+        "descriptionTr": "Bir yerden başka bir konuma hareket etmek.",
+        "exampleEn": "I need to go home now.",
+        "exampleTr": "Şimdi eve gitmem gerekiyor."
+      }
+    ],
+    "phrasalVerbs": [
+      {
+        "phrase": "go on",
+        "meaningTr": "Devam etmek",
+        "exampleEn": "Please go on with your story.",
+        "exampleTr": "Hikayene devam et."
+      }
+    ],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "come",
+    "lemma": "come",
+    "ipa": "/kʌm/",
+    "meaningTr": ["gelmek", "yaklaşmak"],
+    "isRegular": false,
+    "transitivity": "intransitive",
+    "forms": {
+      "v1": "come",
+      "v2": "came",
+      "v3": "come",
+      "thirdPersonSingular": "comes",
+      "presentParticiple": "coming"
+    },
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "verb",
+        "titleTr": "Fiil Olarak: Gelmek",
+        "descriptionTr": "Bulunulan yere doğru hareket etmek.",
+        "exampleEn": "Can you come with me?",
+        "exampleTr": "Benimle gelebilir misin?"
+      }
+    ],
+    "phrasalVerbs": [
+      {
+        "phrase": "come back",
+        "meaningTr": "Geri gelmek",
+        "exampleEn": "When will you come back?",
+        "exampleTr": "Ne zaman geri geleceksin?"
+      }
+    ],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "see",
+    "lemma": "see",
+    "ipa": "/siː/",
+    "meaningTr": ["görmek", "fark etmek", "anlamak"],
+    "isRegular": false,
+    "transitivity": "both",
+    "forms": {
+      "v1": "see",
+      "v2": "saw",
+      "v3": "seen",
+      "thirdPersonSingular": "sees",
+      "presentParticiple": "seeing"
+    },
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "verb",
+        "titleTr": "Fiil Olarak: Görmek",
+        "descriptionTr": "Göz duyusuyla algılamak.",
+        "exampleEn": "I see what you mean.",
+        "exampleTr": "Ne demek istediğini anlıyorum."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "want",
+    "lemma": "want",
+    "ipa": "/wɒnt/",
+    "meaningTr": ["istemek", "arzulamak"],
+    "isRegular": true,
+    "transitivity": "transitive",
+    "forms": {
+      "v1": "want",
+      "v2": "wanted",
+      "v3": "wanted",
+      "thirdPersonSingular": "wants",
+      "presentParticiple": "wanting"
+    },
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "verb",
+        "titleTr": "Fiil Olarak: İstemek",
+        "descriptionTr": "Bir şeye sahip olmayı arzu etmek.",
+        "exampleEn": "I want a cup of coffee.",
+        "exampleTr": "Bir fincan kahve istiyorum."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "know",
+    "lemma": "know",
+    "ipa": "/nəʊ/",
+    "meaningTr": ["bilmek", "tanımak"],
+    "isRegular": false,
+    "transitivity": "both",
+    "forms": {
+      "v1": "know",
+      "v2": "knew",
+      "v3": "known",
+      "thirdPersonSingular": "knows",
+      "presentParticiple": "knowing"
+    },
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "verb",
+        "titleTr": "Fiil Olarak: Bilmek",
+        "descriptionTr": "Zihinde bilgiye sahip olmak.",
+        "exampleEn": "I don't know the answer.",
+        "exampleTr": "Cevabı bilmiyorum."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "forget",
+    "lemma": "forget",
+    "ipa": "/fəˈɡet/",
+    "meaningTr": ["unutmak"],
+    "isRegular": false,
+    "transitivity": "both",
+    "forms": {
+      "v1": "forget",
+      "v2": "forgot",
+      "v3": "forgotten",
+      "thirdPersonSingular": "forgets",
+      "presentParticiple": "forgetting"
+    },
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "verb",
+        "titleTr": "Fiil Olarak: Unutmak",
+        "descriptionTr": "Bilgiyi akıldan çıkarmak.",
+        "exampleEn": "Don't forget to send the email.",
+        "exampleTr": "E-postayı göndermeyi unutma."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "remember",
+    "lemma": "remember",
+    "ipa": "/rɪˈmem.bər/",
+    "meaningTr": ["hatırlamak", "anımsamak"],
+    "isRegular": true,
+    "transitivity": "both",
+    "forms": {
+      "v1": "remember",
+      "v2": "remembered",
+      "v3": "remembered",
+      "thirdPersonSingular": "remembers",
+      "presentParticiple": "remembering"
+    },
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "verb",
+        "titleTr": "Fiil Olarak: Hatırlamak",
+        "descriptionTr": "Geçmişteki bilgiyi zihinde canlandırmak.",
+        "exampleEn": "I remember our meeting.",
+        "exampleTr": "Toplantımızı hatırlıyorum."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "drink",
+    "lemma": "drink",
+    "ipa": "/drɪŋk/",
+    "meaningTr": ["içmek"],
+    "isRegular": false,
+    "transitivity": "both",
+    "forms": {
+      "v1": "drink",
+      "v2": "drank",
+      "v3": "drunk",
+      "thirdPersonSingular": "drinks",
+      "presentParticiple": "drinking"
+    },
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "verb",
+        "titleTr": "Fiil Olarak: İçmek",
+        "descriptionTr": "Sıvı tüketmek.",
+        "exampleEn": "Drink plenty of water.",
+        "exampleTr": "Bol bol su iç."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "walk",
+    "lemma": "walk",
+    "ipa": "/wɔːk/",
+    "meaningTr": ["yürümek"],
+    "isRegular": true,
+    "transitivity": "both",
+    "forms": {
+      "v1": "walk",
+      "v2": "walked",
+      "v3": "walked",
+      "thirdPersonSingular": "walks",
+      "presentParticiple": "walking"
+    },
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "verb",
+        "titleTr": "Fiil Olarak: Yürümek",
+        "descriptionTr": "Ayaklarla adım atarak ilerlemek.",
+        "exampleEn": "Let's walk in the park.",
+        "exampleTr": "Parkta yürüyelim."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "run",
+    "lemma": "run",
+    "ipa": "/rʌn/",
+    "meaningTr": ["koşmak", "çalıştırmak"],
+    "isRegular": false,
+    "transitivity": "both",
+    "forms": {
+      "v1": "run",
+      "v2": "ran",
+      "v3": "run",
+      "thirdPersonSingular": "runs",
+      "presentParticiple": "running"
+    },
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "verb",
+        "titleTr": "Fiil Olarak: Koşmak",
+        "descriptionTr": "Hızlı adımlarla hareket etmek.",
+        "exampleEn": "He runs every morning.",
+        "exampleTr": "Her sabah koşar."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "read",
+    "lemma": "read",
+    "ipa": "/riːd/",
+    "meaningTr": ["okumak"],
+    "isRegular": false,
+    "transitivity": "both",
+    "forms": {
+      "v1": "read",
+      "v2": "read",
+      "v3": "read",
+      "thirdPersonSingular": "reads",
+      "presentParticiple": "reading"
+    },
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "verb",
+        "titleTr": "Fiil Olarak: Okumak",
+        "descriptionTr": "Yazılı metinleri anlamlandırmak.",
+        "exampleEn": "I like reading books.",
+        "exampleTr": "Kitap okumayı severim."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "write",
+    "lemma": "write",
+    "ipa": "/raɪt/",
+    "meaningTr": ["yazmak"],
+    "isRegular": false,
+    "transitivity": "both",
+    "forms": {
+      "v1": "write",
+      "v2": "wrote",
+      "v3": "written",
+      "thirdPersonSingular": "writes",
+      "presentParticiple": "writing"
+    },
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "verb",
+        "titleTr": "Fiil Olarak: Yazmak",
+        "descriptionTr": "Kağıda veya dijital ortama yazı kaleme almak.",
+        "exampleEn": "Write down your notes.",
+        "exampleTr": "Notlarını yaz."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  }
+]

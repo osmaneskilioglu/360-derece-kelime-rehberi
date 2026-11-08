@@ -1,366 +1,286 @@
 // components/TensesSection.tsx
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import type { Verb, TenseConjugation, PersonGroup } from '../types/verb';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Verb } from '../types/verb';
 
-interface TensesSectionProps {
+interface Props {
   verb: Verb;
 }
 
-type CategoryFilter = 'all' | 'present' | 'past' | 'future';
-type ActiveSentenceType = 'affirmative' | 'negative' | 'question';
-
-const PERSON_LABELS: Record<PersonGroup, string> = {
-  I: 'I',
-  heSheIt: 'he / she / it',
-  youWeThey: 'you / we / they',
+// Tüm zamanlar için profesyonel, sosyal ve iş hayatında geçerli gerçek hayat karşılığı rehberi
+const TENSE_PSYCHOLOGY_MAP: Record<string, { vibe: string; nuance: string }> = {
+  present_simple: {
+    vibe: '"Genel olarak durum bu." Hayatın rutinlerini, değişmez kuralları ve alışkanlıkları anlatır.',
+    nuance: 'Pratik kullanım: Kalıcı durumlar (örn: "I live in Istanbul", olumsuzda "I don\'t know").',
+  },
+  present_continuous: {
+    vibe: '"Şu an bu sürecin ortasındayım." Anlık yapılan işleri veya bu döneme mahsus geçici durumları ifade eder.',
+    nuance: 'Pratik kullanım: Günlük akıştaki geçici durumlar (örn: "I\'m working on a new project this week").',
+  },
+  present_perfect: {
+    vibe: '"Zamanı boş ver, sonuca bak." Eylemin ne zaman yapıldığı değil, şu ana olan etkisi ve deneyim önemlidir.',
+    nuance: 'Pratik kullanım: Yaşanmışlıklar (örn: "I\'ve already checked the reports", olumsuzda "I haven\'t seen it").',
+  },
+  present_perfectContinuous: {
+    vibe: '"Bir süredir bununla uğraşıyorum." Geçmişten beri kesintisiz devam eden yoğun sürece vurgu yapar.',
+    nuance: 'Pratik kullanım: Uzun süren işler (örn: "We\'ve been discussing this issue for hours").',
+  },
+  past_simple: {
+    vibe: '"O olay bitti ve kapandı." Geçmişte belirli bir zamanda yaşanmış ve o an bitmiş eylemlerdir.',
+    nuance: 'Pratik kullanım: Net geçmiş zaman (örn: "We signed the contract yesterday", olumsuzda "I didn\'t notice").',
+  },
+  past_continuous: {
+    vibe: '"O sırada tam olarak bunu yapıyordum." Geçmişteki bir anda devam eden ve başka bir olayla bölünen süreç.',
+    nuance: 'Pratik kullanım: Geçmişteki kesintili anlar (örn: "I was reviewing emails when you called").',
+  },
+  past_perfect: {
+    vibe: '"O olaydan çok daha önce zaten gerçekleşmişti." Geçmişteki iki olay arasında öncelik sırası kurar.',
+    nuance: 'Pratik kullanım: Geçmişin geçmişi (örn: "The system had already crashed before we logged in").',
+  },
+  past_perfectContinuous: {
+    vibe: '"O olay olana kadar uzun süredir o işi yürütüyordum."',
+    nuance: 'Pratik kullanım: Geçmişteki o ana kadarki yoğun süreç (örn: "He had been working there for 5 years").',
+  },
+  future_simple: {
+    vibe: '"Şimdi karar verdim" veya "Bence ileride böyle olacak (tahmin)."',
+    nuance: 'Pratik kullanım: Anlık kararlar ve genel tahminler (örn: "I\'ll handle this issue", olumsuzda "It won\'t take long").',
+  },
+  future_goingTo: {
+    vibe: '"Kafama koydum, planımı yaptım" veya "Kanıtı var, geliyor gelmekte olan."',
+    nuance: 'Pratik kullanım: Önceden niyet edilmiş planlar ve görünen kanıtlar (örn: "Look at those black clouds! It is going to rain").',
+  },
+  future_continuous: {
+    vibe: '"Gelecekteki o saatte tam olarak bu işin ortasında olacağım."',
+    nuance: 'Pratik kullanım: Gelecekteki meşguliyet (örn: "Tomorrow at 10 AM, I\'ll be attending a meeting").',
+  },
+  future_perfect: {
+    vibe: '"Gelecekteki o tarihe kadar bu iş kesinlikle bitmiş olacak (Deadline)."',
+    nuance: 'Pratik kullanım: Zaman sınırlı hedefler (örn: "We\'ll have completed the migration by Friday").',
+  },
+  future_perfectContinuous: {
+    vibe: '"Gelecekteki o noktaya geldiğimde bu süreci uzun süredir yapıyor olacağım."',
+    nuance: 'Pratik kullanım: Süre vurgusu (örn: "Next year, I\'ll have been managing this team for 3 years").',
+  },
 };
 
-const CATEGORIES: { key: CategoryFilter; label: string }[] = [
-  { key: 'all', label: 'Tümü (12)' },
-  { key: 'present', label: 'Present' },
-  { key: 'past', label: 'Past' },
-  { key: 'future', label: 'Future' },
-];
+export function TensesSection({ verb }: Props) {
+  const [selectedFilter, setSelectedFilter] = useState<'all' | 'present' | 'past' | 'future'>('all');
+  const [expandedTenseId, setExpandedTenseId] = useState<string | null>(null);
 
-export const TensesSection: React.FC<TensesSectionProps> = ({ verb }) => {
-  const tensesList: TenseConjugation[] = Array.isArray(verb.tenses)
-    ? verb.tenses
-    : Object.values(verb.tenses || {});
+  if (!verb.tenses || verb.tenses.length === 0) return null;
 
-  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>('all');
-  const [expandedTense, setExpandedTense] = useState<string | null>(
-    tensesList[0]?.name || null
-  );
-  const [sentenceType, setSentenceType] = useState<ActiveSentenceType>('affirmative');
-
-  const filteredTenses = tensesList.filter((tense) => {
-    if (selectedCategory === 'all') return true;
-    const lowerName = (tense.name || '').toLowerCase();
-    if (selectedCategory === 'present') return lowerName.includes('present');
-    if (selectedCategory === 'past') return lowerName.includes('past');
-    if (selectedCategory === 'future')
-      return lowerName.includes('future') || lowerName.includes('conditional');
-    return true;
+  const filteredTenses = verb.tenses.filter((t) => {
+    if (selectedFilter === 'all') return true;
+    return t.time === selectedFilter;
   });
 
-  const toggleExpand = (tenseName: string) => {
-    setExpandedTense((prev) => (prev === tenseName ? null : tenseName));
+  const toggleExpand = (id: string) => {
+    setExpandedTenseId(expandedTenseId === id ? null : id);
   };
-
-  const getConjugationText = (
-    tense: any,
-    type: ActiveSentenceType,
-    person: PersonGroup
-  ): string => {
-    if (!tense) return '-';
-
-    const root = tense.forms || tense.sentences || tense;
-
-    let group = null;
-    if (type === 'affirmative') {
-      group = root.affirmative || root.positive || root.olumlu;
-    } else if (type === 'negative') {
-      group = root.negative || root.olumsuz;
-    } else if (type === 'question') {
-      // Dilbilgisi modellerindeki 'interrogative' veya 'question' adlandırmalarını yakalar
-      group =
-        root.interrogative ||
-        root.question ||
-        root.questions ||
-        root.questionForm ||
-        root.soru;
-    }
-
-    if (!group) return '-';
-
-    return group[person] || '-';
-  };
-
-  if (!tensesList.length) return null;
 
   return (
     <View style={styles.container}>
       <Text style={styles.sectionTitle}>Zaman Çekimleri (Tenses)</Text>
+      <Text style={styles.sectionSubtitle}>
+        Formüllerin ötesinde, hem sosyal hem iş hayatında kabul gören doğal akışıyla zaman yapıları:
+      </Text>
 
-      {/* Kategori Filtresi */}
+      {/* Filtre Butonları */}
       <View style={styles.filterRow}>
-        {CATEGORIES.map((cat) => (
-          <TouchableOpacity
-            key={cat.key}
-            style={[
-              styles.filterChip,
-              selectedCategory === cat.key && styles.filterChipActive,
-            ]}
-            onPress={() => setSelectedCategory(cat.key)}
-          >
-            <Text
-              style={[
-                styles.filterChipText,
-                selectedCategory === cat.key && styles.filterChipTextActive,
-              ]}
-            >
-              {cat.label}
-            </Text>
-          </TouchableOpacity>
-        ))}
+        <TouchableOpacity
+          style={[styles.filterBtn, selectedFilter === 'all' && styles.filterBtnActive]}
+          onPress={() => setSelectedFilter('all')}
+        >
+          <Text style={[styles.filterText, selectedFilter === 'all' && styles.filterTextActive]}>
+            Tümü ({verb.tenses.length})
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.filterBtn, selectedFilter === 'present' && styles.filterBtnActive]}
+          onPress={() => setSelectedFilter('present')}
+        >
+          <Text style={[styles.filterText, selectedFilter === 'present' && styles.filterTextActive]}>
+            Present
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.filterBtn, selectedFilter === 'past' && styles.filterBtnActive]}
+          onPress={() => setSelectedFilter('past')}
+        >
+          <Text style={[styles.filterText, selectedFilter === 'past' && styles.filterTextActive]}>
+            Past
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.filterBtn, selectedFilter === 'future' && styles.filterBtnActive]}
+          onPress={() => setSelectedFilter('future')}
+        >
+          <Text style={[styles.filterText, selectedFilter === 'future' && styles.filterTextActive]}>
+            Future
+          </Text>
+        </TouchableOpacity>
       </View>
 
       {/* Zaman Kartları */}
-      <View style={styles.tensesWrapper}>
-        {filteredTenses.map((tense) => {
-          const isExpanded = expandedTense === tense.name;
+      {filteredTenses.map((t) => {
+        const isExpanded = expandedTenseId === t.id;
+        const psychology = TENSE_PSYCHOLOGY_MAP[t.id];
 
-          return (
-            <View key={tense.name} style={styles.tenseCard}>
-              <TouchableOpacity
-                style={styles.tenseHeader}
-                onPress={() => toggleExpand(tense.name)}
-                activeOpacity={0.7}
-              >
-                <View style={styles.tenseHeaderLeft}>
-                  <Text style={styles.tenseName}>{tense.name}</Text>
-                  {tense.nameTr ? (
-                    <Text style={styles.tenseNameTr}>{tense.nameTr}</Text>
-                  ) : null}
+        return (
+          <View key={t.id} style={styles.card}>
+            <TouchableOpacity
+              style={styles.cardHeader}
+              onPress={() => toggleExpand(t.id)}
+              activeOpacity={0.8}
+            >
+              {/* Sol taraf: Zaman Adı */}
+              <View style={styles.headerLeft}>
+                <Text style={styles.tenseName}>{t.name}</Text>
+                <Text style={styles.tenseNameTr}>{t.nameTr}</Text>
+              </View>
+
+              {/* Sağ taraf: Sıkışmayı önlemek için formül ve ok simgesi alt alta/ferah */}
+              <View style={styles.headerRight}>
+                <View style={styles.formulaBadge}>
+                  <Text style={styles.formulaText}>{t.formula}</Text>
                 </View>
-                <View style={styles.headerRight}>
-                  {tense.formula ? (
-                    <View style={styles.formulaBadge}>
-                      <Text style={styles.formulaText}>{tense.formula}</Text>
-                    </View>
-                  ) : null}
-                  <Text style={styles.chevron}>{isExpanded ? '▲' : '▼'}</Text>
-                </View>
-              </TouchableOpacity>
+                <Text style={styles.chevron}>{isExpanded ? '▲' : '▼'}</Text>
+              </View>
+            </TouchableOpacity>
 
-              {/* Açılır Gövde */}
-              {isExpanded && (
-                <View style={styles.tenseBody}>
-                  {/* Cümle Türü Seçici */}
-                  <View style={styles.typeSelector}>
-                    <TouchableOpacity
-                      style={[
-                        styles.typeBtn,
-                        sentenceType === 'affirmative' && styles.typeBtnPositiveActive,
-                      ]}
-                      onPress={() => setSentenceType('affirmative')}
-                    >
-                      <Text
-                        style={[
-                          styles.typeBtnText,
-                          sentenceType === 'affirmative' && styles.typeBtnTextActive,
-                        ]}
-                      >
-                        + Olumlu
-                      </Text>
-                    </TouchableOpacity>
+            {/* Psikolojik / Profesyonel Niyet Açıklaması */}
+            {psychology && (
+              <View style={styles.psychologyBox}>
+                <Text style={styles.psychologyTitle}>🧠 Gerçek Hayat Karşılığı:</Text>
+                <Text style={styles.psychologyVibe}>{psychology.vibe}</Text>
+                <Text style={styles.psychologyNuance}>📌 {psychology.nuance}</Text>
+              </View>
+            )}
 
-                    <TouchableOpacity
-                      style={[
-                        styles.typeBtn,
-                        sentenceType === 'negative' && styles.typeBtnNegativeActive,
-                      ]}
-                      onPress={() => setSentenceType('negative')}
-                    >
-                      <Text
-                        style={[
-                          styles.typeBtnText,
-                          sentenceType === 'negative' && styles.typeBtnTextActive,
-                        ]}
-                      >
-                        − Olumsuz
-                      </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={[
-                        styles.typeBtn,
-                        sentenceType === 'question' && styles.typeBtnQuestionActive,
-                      ]}
-                      onPress={() => setSentenceType('question')}
-                    >
-                      <Text
-                        style={[
-                          styles.typeBtnText,
-                          sentenceType === 'question' && styles.typeBtnTextActive,
-                        ]}
-                      >
-                        ? Soru
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-
-                  {/* 3 Özne Grubu Çekimleri */}
-                  <View style={styles.conjugationList}>
-                    {(['I', 'heSheIt', 'youWeThey'] as PersonGroup[]).map((person) => (
-                      <View key={person} style={styles.conjugationRow}>
-                        <View style={styles.subjectBox}>
-                          <Text style={styles.subjectText}>{PERSON_LABELS[person]}</Text>
-                        </View>
-                        <Text style={styles.sentenceText}>
-                          {getConjugationText(tense, sentenceType, person)}
-                        </Text>
+            {/* Geniş ve Ferah Çekim Alanı */}
+            {isExpanded && (
+              <View style={styles.detailsContainer}>
+                {(['I', 'heSheIt', 'youWeThey'] as const).map((subj) => (
+                  <View key={subj} style={styles.rowCard}>
+                    <Text style={styles.rowPronoun}>
+                      {subj === 'I' ? 'I (Ben)' : subj === 'heSheIt' ? 'He / She / It (O)' : 'You / We / They'}
+                    </Text>
+                    <View style={styles.rowForms}>
+                      <View style={styles.formItem}>
+                        <Text style={styles.formLabel}>Olumlu (+)</Text>
+                        <Text style={styles.formValue}>{t.forms.affirmative[subj]}</Text>
                       </View>
-                    ))}
+                      <View style={styles.formItem}>
+                        <Text style={styles.formLabel}>Olumsuz (-)</Text>
+                        <Text style={styles.formValue}>{t.forms.negative[subj]}</Text>
+                      </View>
+                      <View style={styles.formItem}>
+                        <Text style={styles.formLabel}>Soru (?)</Text>
+                        <Text style={styles.formValue}>{t.forms.interrogative[subj]}</Text>
+                      </View>
+                    </View>
                   </View>
-                </View>
-              )}
-            </View>
-          );
-        })}
-      </View>
+                ))}
+              </View>
+            )}
+          </View>
+        );
+      })}
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 24,
-    paddingHorizontal: 20,
-    paddingBottom: 40,
+  container: { paddingHorizontal: 20, marginTop: 24 },
+  sectionTitle: { fontSize: 18, fontWeight: '800', color: '#0F172A', marginBottom: 4 },
+  sectionSubtitle: { fontSize: 13, color: '#64748B', marginBottom: 12, lineHeight: 18 },
+  filterRow: { flexDirection: 'row', gap: 6, marginBottom: 14 },
+  filterBtn: {
+    flex: 1,
+    paddingVertical: 8,
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
   },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#0F172A',
-    marginBottom: 12,
-  },
-  filterRow: {
-    flexDirection: 'row',
-    gap: 8,
-    marginBottom: 16,
-  },
-  filterChip: {
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 20,
-    backgroundColor: '#F1F5F9',
-  },
-  filterChipActive: {
-    backgroundColor: '#2563EB',
-  },
-  filterChipText: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: '#64748B',
-  },
-  filterChipTextActive: {
-    color: '#FFFFFF',
-  },
-  tensesWrapper: {
-    gap: 10,
-  },
-  tenseCard: {
+  filterBtnActive: { backgroundColor: '#2563EB', borderColor: '#2563EB' },
+  filterText: { fontSize: 13, fontWeight: '600', color: '#64748B' },
+  filterTextActive: { color: '#FFFFFF' },
+  card: {
     backgroundColor: '#FFFFFF',
     borderRadius: 14,
+    padding: 14,
+    marginBottom: 10,
     borderWidth: 1,
     borderColor: '#E2E8F0',
-    overflow: 'hidden',
   },
-  tenseHeader: {
+  cardHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 14,
+    alignItems: 'flex-start', // Uzun başlıklarda hizalamayı düzelttik
   },
-  tenseHeaderLeft: {
+  headerLeft: {
     flex: 1,
+    paddingRight: 8,
   },
-  tenseName: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#1E293B',
+  tenseName: { fontSize: 15, fontWeight: '700', color: '#0F172A' },
+  tenseNameTr: { fontSize: 11, color: '#64748B', marginTop: 1 },
+  headerRight: { 
+    alignItems: 'flex-end', 
+    gap: 6,
   },
-  tenseNameTr: {
-    fontSize: 13,
-    color: '#64748B',
-    marginTop: 2,
+  formulaBadge: { 
+    backgroundColor: '#F1F5F9', 
+    paddingHorizontal: 8, 
+    paddingVertical: 4, 
+    borderRadius: 8,
   },
-  headerRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  formulaText: { fontSize: 11, fontWeight: '600', color: '#334155' },
+  chevron: { fontSize: 12, color: '#64748B', fontWeight: '700', paddingHorizontal: 4 },
+  psychologyBox: {
+    marginTop: 10,
+    backgroundColor: '#F8FAFC',
+    borderRadius: 10,
+    padding: 10,
+    borderLeftWidth: 3,
+    borderLeftColor: '#2563EB',
   },
-  formulaBadge: {
-    backgroundColor: '#EFF6FF',
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    borderRadius: 6,
-  },
-  formulaText: {
-    fontSize: 11,
-    fontWeight: '600',
-    color: '#2563EB',
-  },
-  chevron: {
-    fontSize: 12,
-    color: '#94A3B8',
-    marginLeft: 4,
-  },
-  tenseBody: {
+  psychologyTitle: { fontSize: 12, fontWeight: '700', color: '#1E293B', marginBottom: 3 },
+  psychologyVibe: { fontSize: 12, color: '#334155', lineHeight: 17, marginBottom: 4 },
+  psychologyNuance: { fontSize: 11, fontStyle: 'italic', color: '#64748B', lineHeight: 16 },
+  detailsContainer: {
+    marginTop: 12,
     borderTopWidth: 1,
     borderTopColor: '#F1F5F9',
-    backgroundColor: '#FAFAFA',
-    padding: 14,
-  },
-  typeSelector: {
-    flexDirection: 'row',
-    backgroundColor: '#E2E8F0',
-    borderRadius: 8,
-    padding: 2,
-    marginBottom: 12,
-  },
-  typeBtn: {
-    flex: 1,
-    paddingVertical: 6,
-    alignItems: 'center',
-    borderRadius: 6,
-  },
-  typeBtnPositiveActive: {
-    backgroundColor: '#16A34A',
-  },
-  typeBtnNegativeActive: {
-    backgroundColor: '#DC2626',
-  },
-  typeBtnQuestionActive: {
-    backgroundColor: '#D97706',
-  },
-  typeBtnText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: '#475569',
-  },
-  typeBtnTextActive: {
-    color: '#FFFFFF',
-  },
-  conjugationList: {
+    paddingTop: 10,
     gap: 8,
   },
-  conjugationRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+  rowCard: {
+    backgroundColor: '#F8FAFC',
+    borderRadius: 10,
     padding: 10,
-    borderRadius: 8,
     borderWidth: 1,
     borderColor: '#E2E8F0',
   },
-  subjectBox: {
-    width: 95,
-    borderRightWidth: 1,
-    borderRightColor: '#E2E8F0',
-    marginRight: 10,
+  rowPronoun: { fontSize: 12, fontWeight: '700', color: '#2563EB', marginBottom: 6 },
+  rowForms: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 6,
   },
-  subjectText: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: '#64748B',
-  },
-  sentenceText: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#0F172A',
+  formItem: {
     flex: 1,
+    backgroundColor: '#FFFFFF',
+    padding: 6,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    alignItems: 'center',
   },
+  formLabel: { fontSize: 10, fontWeight: '700', color: '#64748B', marginBottom: 2 },
+  formValue: { fontSize: 11, fontWeight: '600', color: '#0F172A', textAlign: 'center' },
 });

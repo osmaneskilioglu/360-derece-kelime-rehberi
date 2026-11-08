@@ -1,0 +1,250 @@
+[
+  {
+    "id": "good",
+    "lemma": "good",
+    "ipa": "/ɡʊd/",
+    "meaningTr": ["iyi", "güzel", "faydalı"],
+    "isRegular": true,
+    "transitivity": "adjective",
+    "forms": {
+      "v1": "good",
+      "v2": "better",
+      "v3": "best",
+      "thirdPersonSingular": "goods",
+      "presentParticiple": "gooding"
+    },
+    "spellingNotes": ["Temel niteleme sıfatıdır. Karşılaştırma hali 'better', üstünlük hali 'best' olur."],
+    "wordFamily": [
+      {
+        "id": "well",
+        "word": "well",
+        "partOfSpeech": "adverb",
+        "polarity": "positive",
+        "meaningTr": "iyi bir şekilde",
+        "example": "She speaks English well."
+      }
+    ],
+    "senses": [
+      {
+        "category": "adjective",
+        "titleTr": "Sıfat: İyi / Kaliteli",
+        "descriptionTr": "Olumlu niteliklere sahip olma durumu.",
+        "exampleEn": "This is a good project.",
+        "exampleTr": "Bu iyi bir proje."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": [
+      {
+        "collocation": "good job",
+        "meaningTr": "iyi iş, aferin",
+        "exampleEn": "Good job on the release!",
+        "exampleTr": "Sürüm konusunda iyi iş çıkardın!"
+      }
+    ]
+  },
+  {
+    "id": "new",
+    "lemma": "new",
+    "ipa": "/njuː/",
+    "meaningTr": ["yeni", "taze"],
+    "isRegular": true,
+    "transitivity": "adjective",
+    "forms": {
+      "v1": "new",
+      "v2": "newer",
+      "v3": "newest",
+      "thirdPersonSingular": "news",
+      "presentParticiple": "newing"
+    },
+    "spellingNotes": ["Eski zıttı olan ve yeni üretilmiş/edinilmiş şeyleri niteleyen sıfattır."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "adjective",
+        "titleTr": "Sıfat: Yeni",
+        "descriptionTr": "Daha önce kullanılmamış veya yeni tasarlanmış.",
+        "exampleEn": "We bought a new car.",
+        "exampleTr": "Yeni bir araba aldık."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "old",
+    "lemma": "old",
+    "ipa": "/əʊld/",
+    "meaningTr": ["eski", "yaşlı"],
+    "isRegular": true,
+    "transitivity": "adjective",
+    "forms": {
+      "v1": "old",
+      "v2": "older",
+      "v3": "oldest",
+      "thirdPersonSingular": "olds",
+      "presentParticiple": "olding"
+    },
+    "spellingNotes": ["Yaş veya kullanım süresi uzun olan varlıkları niteler."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "adjective",
+        "titleTr": "Sıfat: Eski / Yaşlı",
+        "descriptionTr": "Uzun süredir var olan veya yaşlanmış.",
+        "exampleEn": "This is an old building.",
+        "exampleTr": "Bu eski bir bina."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "great",
+    "lemma": "great",
+    "ipa": "/ɡreɪt/",
+    "meaningTr": ["harika", "mükemmel", "büyük"],
+    "isRegular": true,
+    "transitivity": "adjective",
+    "forms": {
+      "v1": "great",
+      "v2": "greater",
+      "v3": "greatest",
+      "thirdPersonSingular": "greats",
+      "presentParticiple": "greating"
+    },
+    "spellingNotes": ["Yüksek derece olumlu anlam veya ölçek olarak büyüklük bildirir."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "adjective",
+        "titleTr": "Sıfat: Harika / Muazzam",
+        "descriptionTr": "Beklentilerin çok üzerinde olan kalite.",
+        "exampleEn": "That is a great idea.",
+        "exampleTr": "Bu harika bir fikir."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "always",
+    "lemma": "always",
+    "ipa": "/ˈɔːl.weɪz/",
+    "meaningTr": ["her zaman", "daima"],
+    "isRegular": true,
+    "transitivity": "adverb",
+    "forms": {
+      "v1": "always",
+      "v2": "always",
+      "v3": "always",
+      "thirdPersonSingular": "always",
+      "presentParticiple": "always"
+    },
+    "spellingNotes": ["Sıklık zarfıdır (frequency adverb). Eylemin her zaman yapıldığını gösterir."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "adverb",
+        "titleTr": "Zarf: Her Zaman",
+        "descriptionTr": "Kesintisiz veya sürekli olarak.",
+        "exampleEn": "I always check my emails.",
+        "exampleTr": "E-postalarımı her zaman kontrol ederim."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "never",
+    "lemma": "never",
+    "ipa": "/ˈnev.ər/",
+    "meaningTr": ["asla", "hiçbir zaman"],
+    "isRegular": true,
+    "transitivity": "adverb",
+    "forms": {
+      "v1": "never",
+      "v2": "never",
+      "v3": "never",
+      "thirdPersonSingular": "never",
+      "presentParticiple": "never"
+    },
+    "spellingNotes": ["Olumsuzluk anlamı taşıyan sıklık zarfıdır."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "adverb",
+        "titleTr": "Zarf: Asla",
+        "descriptionTr": "Hiçbir zaman gerçekleşmeyen durumlar.",
+        "exampleEn": "We never give up.",
+        "exampleTr": "Asla pes etmeyiz."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "often",
+    "lemma": "often",
+    "ipa": "/ˈɒf.ən/",
+    "meaningTr": ["sık sık", "çoğu zaman"],
+    "isRegular": true,
+    "transitivity": "adverb",
+    "forms": {
+      "v1": "often",
+      "v2": "often",
+      "v3": "often",
+      "thirdPersonSingular": "often",
+      "presentParticiple": "often"
+    },
+    "spellingNotes": ["Tekrarlanan eylemleri sıklık derecesine göre ifade eder."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "adverb",
+        "titleTr": "Zarf: Sık Sık",
+        "descriptionTr": "Düzenli aralıklarla tekrarlanan eylemler.",
+        "exampleEn": "He often travels for business.",
+        "exampleTr": "İş için sık sık seyahat eder."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "very",
+    "lemma": "very",
+    "ipa": "/ˈver.i/",
+    "meaningTr": ["çok", "oldukça"],
+    "isRegular": true,
+    "transitivity": "adverb",
+    "forms": {
+      "v1": "very",
+      "v2": "very",
+      "v3": "very",
+      "thirdPersonSingular": "very",
+      "presentParticiple": "very"
+    },
+    "spellingNotes": ["Sıfatları veya diğer zarfları derecelendirmek (güçlendirmek) için kullanılır."],
+    "wordFamily": [],
+    "senses": [
+      {
+        "category": "adverb",
+        "titleTr": "Zarf: Çok",
+        "descriptionTr": "Dereceyi artırma anlamı katar.",
+        "exampleEn": "The application is very fast.",
+        "exampleTr": "Uygulama çok hızlı."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  }
+]

@@ -1,0 +1,502 @@
+[
+  {
+    "id": "i",
+    "lemma": "I",
+    "ipa": "/aɪ/",
+    "meaningTr": ["ben"],
+    "isRegular": true,
+    "transitivity": "pronoun",
+    "forms": {
+      "v1": "I",
+      "v2": "my",
+      "v3": "me",
+      "thirdPersonSingular": "I",
+      "presentParticiple": "I"
+    },
+    "spellingNotes": ["Birinci tekil şahıs özne zamiridir. Cümlede her zaman büyük yazılır."],
+    "wordFamily": [
+      {
+        "id": "my",
+        "word": "my",
+        "partOfSpeech": "determiner",
+        "polarity": "positive",
+        "meaningTr": "benim",
+        "example": "This is my book."
+      },
+      {
+        "id": "mine",
+        "word": "mine",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "benimki",
+        "example": "This book is mine."
+      },
+      {
+        "id": "myself",
+        "word": "myself",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "kendim",
+        "example": "I did it myself."
+      }
+    ],
+    "senses": [
+      {
+        "category": "pronoun",
+        "titleTr": "Kişi Zamiri: Ben",
+        "descriptionTr": "Konuşan kişiyi özne konumunda belirtir.",
+        "exampleEn": "I am learning English.",
+        "exampleTr": "İngilizce öğreniyorum."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "you",
+    "lemma": "you",
+    "ipa": "/juː/",
+    "meaningTr": ["sen", "siz"],
+    "isRegular": true,
+    "transitivity": "pronoun",
+    "forms": {
+      "v1": "you",
+      "v2": "your",
+      "v3": "you",
+      "thirdPersonSingular": "you",
+      "presentParticiple": "you"
+    },
+    "spellingNotes": ["İkinci tekil ve çoğul şahıs zamiridir."],
+    "wordFamily": [
+      {
+        "id": "your",
+        "word": "your",
+        "partOfSpeech": "determiner",
+        "polarity": "positive",
+        "meaningTr": "senin / sizin",
+        "example": "What is your goal?"
+      },
+      {
+        "id": "yours",
+        "word": "yours",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "senininki / sizinki",
+        "example": "Is this success yours?"
+      },
+      {
+        "id": "yourself",
+        "word": "yourself",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "kendin / kendiniz",
+        "example": "Believe in yourself."
+      }
+    ],
+    "senses": [
+      {
+        "category": "pronoun",
+        "titleTr": "Kişi Zamiri: Sen / Siz",
+        "descriptionTr": "Karşımızdaki muhatabı belirtir.",
+        "exampleEn": "You can do this.",
+        "exampleTr": "Bunu yapabilirsin."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "he",
+    "lemma": "he",
+    "ipa": "/hiː/",
+    "meaningTr": ["o (erkek)"],
+    "isRegular": true,
+    "transitivity": "pronoun",
+    "forms": {
+      "v1": "he",
+      "v2": "his",
+      "v3": "him",
+      "thirdPersonSingular": "he",
+      "presentParticiple": "he"
+    },
+    "spellingNotes": ["Erkek cinsiyetindeki tekil şahıslar için özne zamiridir."],
+    "wordFamily": [
+      {
+        "id": "his",
+        "word": "his",
+        "partOfSpeech": "determiner/pronoun",
+        "polarity": "positive",
+        "meaningTr": "onun (erkeğin)",
+        "example": "His office is on the top floor."
+      },
+      {
+        "id": "him",
+        "word": "him",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "ona / onu (erkeğe)",
+        "example": "I called him yesterday."
+      },
+      {
+        "id": "himself",
+        "word": "himself",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "kendisi (erkek)",
+        "example": "He tested the system himself."
+      }
+    ],
+    "senses": [
+      {
+        "category": "pronoun",
+        "titleTr": "Kişi Zamiri: O (Erkek)",
+        "descriptionTr": "Üçüncü tekil şahıs erkek özne zamiri.",
+        "exampleEn": "He works as a manager.",
+        "exampleTr": "O, yönetici olarak çalışıyor."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "she",
+    "lemma": "she",
+    "ipa": "/ʃiː/",
+    "meaningTr": ["o (kadın)"],
+    "isRegular": true,
+    "transitivity": "pronoun",
+    "forms": {
+      "v1": "she",
+      "v2": "her",
+      "v3": "her",
+      "thirdPersonSingular": "she",
+      "presentParticiple": "she"
+    },
+    "spellingNotes": ["Kadın cinsiyetindeki tekil şahıslar için özne zamiridir."],
+    "wordFamily": [
+      {
+        "id": "her",
+        "word": "her",
+        "partOfSpeech": "determiner/pronoun",
+        "polarity": "positive",
+        "meaningTr": "onun / onu",
+        "example": "Her presentation was clear."
+      },
+      {
+        "id": "hers",
+        "word": "hers",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "onunki",
+        "example": "The decision is hers."
+      },
+      {
+        "id": "herself",
+        "word": "herself",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "kendisi (kadın)",
+        "example": "She organized the meeting herself."
+      }
+    ],
+    "senses": [
+      {
+        "category": "pronoun",
+        "titleTr": "Kişi Zamiri: O (Kadın)",
+        "descriptionTr": "Üçüncü tekil şahıs kadın özne zamiri.",
+        "exampleEn": "She leads the team.",
+        "exampleTr": "Ekibe o liderlik ediyor."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "it",
+    "lemma": "it",
+    "ipa": "/ɪt/",
+    "meaningTr": ["o (cansız varlık veya hayvan)"],
+    "isRegular": true,
+    "transitivity": "pronoun",
+    "forms": {
+      "v1": "it",
+      "v2": "its",
+      "v3": "it",
+      "thirdPersonSingular": "it",
+      "presentParticiple": "it"
+    },
+    "spellingNotes": ["Cansız nesneler, durumlar ve hayvanlar için kullanılan tekil zamirdir."],
+    "wordFamily": [
+      {
+        "id": "its",
+        "word": "its",
+        "partOfSpeech": "determiner",
+        "polarity": "positive",
+        "meaningTr": "onun",
+        "example": "The system updated its software."
+      },
+      {
+        "id": "itself",
+        "word": "itself",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "kendisi",
+        "example": "The error fixed itself."
+      }
+    ],
+    "senses": [
+      {
+        "category": "pronoun",
+        "titleTr": "İşaret / Kişi Zamiri: O",
+        "descriptionTr": "Cansız varlıkları veya kavramları niteleyen zamir.",
+        "exampleEn": "It is an efficient tool.",
+        "exampleTr": "Bu verimli bir araç."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "we",
+    "lemma": "we",
+    "ipa": "/wiː/",
+    "meaningTr": ["biz"],
+    "isRegular": true,
+    "transitivity": "pronoun",
+    "forms": {
+      "v1": "we",
+      "v2": "our",
+      "v3": "us",
+      "thirdPersonSingular": "we",
+      "presentParticiple": "we"
+    },
+    "spellingNotes": ["Birinci çoğul şahıs özne zamiridir."],
+    "wordFamily": [
+      {
+        "id": "our",
+        "word": "our",
+        "partOfSpeech": "determiner",
+        "polarity": "positive",
+        "meaningTr": "bizim",
+        "example": "Our project is running smoothly."
+      },
+      {
+        "id": "ours",
+        "word": "ours",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "bizimki",
+        "example": "The responsibility is ours."
+      },
+      {
+        "id": "ourselves",
+        "word": "ourselves",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "kendimiz",
+        "example": "We solved the problem ourselves."
+      }
+    ],
+    "senses": [
+      {
+        "category": "pronoun",
+        "titleTr": "Kişi Zamiri: Biz",
+        "descriptionTr": "Konuşmacı ve ekibini/grubunu kapsar.",
+        "exampleEn": "We are ready for the launch.",
+        "exampleTr": "Lansman için hazırız."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "they",
+    "lemma": "they",
+    "ipa": "/ðeɪ/",
+    "meaningTr": ["onlar"],
+    "isRegular": true,
+    "transitivity": "pronoun",
+    "forms": {
+      "v1": "they",
+      "v2": "their",
+      "v3": "them",
+      "thirdPersonSingular": "they",
+      "presentParticiple": "they"
+    },
+    "spellingNotes": ["Üçüncü çoğul şahıs özne zamiridir."],
+    "wordFamily": [
+      {
+        "id": "their",
+        "word": "their",
+        "partOfSpeech": "determiner",
+        "polarity": "positive",
+        "meaningTr": "onların",
+        "example": "Their feedback was positive."
+      },
+      {
+        "id": "theirs",
+        "word": "theirs",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "onlarınki",
+        "example": "The final decision is theirs."
+      },
+      {
+        "id": "themselves",
+        "word": "themselves",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "kendileri",
+        "example": "They tested it themselves."
+      }
+    ],
+    "senses": [
+      {
+        "category": "pronoun",
+        "titleTr": "Kişi Zamiri: Onlar",
+        "descriptionTr": "Çoğul şahısları veya nesneleri belirtir.",
+        "exampleEn": "They updated the database.",
+        "exampleTr": "Veritabanını güncellediler."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "this",
+    "lemma": "this",
+    "ipa": "/ðɪs/",
+    "meaningTr": ["bu"],
+    "isRegular": true,
+    "transitivity": "pronoun",
+    "forms": {
+      "v1": "this",
+      "v2": "these",
+      "v3": "this",
+      "thirdPersonSingular": "this",
+      "presentParticiple": "this"
+    },
+    "spellingNotes": ["Yakındaki tekil varlıkları işaret eder."],
+    "wordFamily": [
+      {
+        "id": "these",
+        "word": "these",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "bunlar",
+        "example": "These metrics are crucial."
+      }
+    ],
+    "senses": [
+      {
+        "category": "pronoun",
+        "titleTr": "İşaret Zamiri: Bu",
+        "descriptionTr": "Yakındaki tekil kavramları gösterir.",
+        "exampleEn": "This is a priority task.",
+        "exampleTr": "Bu öncelikli bir görev."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "that",
+    "lemma": "that",
+    "ipa": "/ðæt/",
+    "meaningTr": ["şu", "o"],
+    "isRegular": true,
+    "transitivity": "pronoun",
+    "forms": {
+      "v1": "that",
+      "v2": "those",
+      "v3": "that",
+      "thirdPersonSingular": "that",
+      "presentParticiple": "that"
+    },
+    "spellingNotes": ["Uzakta bulunan tekil varlıkları işaret eder."],
+    "wordFamily": [
+      {
+        "id": "those",
+        "word": "those",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "şunlar / o (çoğul)",
+        "example": "Those files are archived."
+      }
+    ],
+    "senses": [
+      {
+        "category": "pronoun",
+        "titleTr": "İşaret Zamiri: Şu / O",
+        "descriptionTr": "Uzakta olan tekil varlıkları gösterir.",
+        "exampleEn": "That was a great meeting.",
+        "exampleTr": "Şu harika bir toplantıydı."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  },
+  {
+    "id": "someone",
+    "lemma": "someone",
+    "ipa": "/ˈsʌm.wʌn/",
+    "meaningTr": ["biri", "birisi"],
+    "isRegular": true,
+    "transitivity": "pronoun",
+    "forms": {
+      "v1": "someone",
+      "v2": "someone's",
+      "v3": "someone",
+      "thirdPersonSingular": "someone",
+      "presentParticiple": "someone"
+    },
+    "spellingNotes": ["Belgisiz zamirdir."],
+    "wordFamily": [
+      {
+        "id": "anyone",
+        "word": "anyone",
+        "partOfSpeech": "pronoun",
+        "polarity": "neutral",
+        "meaningTr": "herhangi biri",
+        "example": "Is anyone available?"
+      },
+      {
+        "id": "everyone",
+        "word": "everyone",
+        "partOfSpeech": "pronoun",
+        "polarity": "positive",
+        "meaningTr": "herkes",
+        "example": "Everyone joined the call."
+      },
+      {
+        "id": "noone",
+        "word": "no one",
+        "partOfSpeech": "pronoun",
+        "polarity": "negative",
+        "meaningTr": "hiç kimse",
+        "example": "No one objected."
+      }
+    ],
+    "senses": [
+      {
+        "category": "pronoun",
+        "titleTr": "Belgisiz Zamir: Biri",
+        "descriptionTr": "Belirsiz bir şahsı ifade eder.",
+        "exampleEn": "Someone sent an email.",
+        "exampleTr": "Biri bir e-posta gönderdi."
+      }
+    ],
+    "phrasalVerbs": [],
+    "idioms": [],
+    "collocations": []
+  }
+]
