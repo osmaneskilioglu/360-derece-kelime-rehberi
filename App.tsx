@@ -1,531 +1,433 @@
 // App.tsx
-import React, { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { useEffect, useState } from 'react';
 import {
+  ActivityIndicator,
+  Pressable,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
   TextInput,
-  ScrollView,
-  TouchableOpacity,
-  FlatList,
-  SafeAreaView,
-  Keyboard,
-  Linking,
-  StatusBar,
-  Platform,
+  View,
 } from 'react-native';
-import { ALL_WORDS, searchWords } from './services/searchService';
-import { speakEnglish, AccentType } from './services/speechService';
-import * as ExternalLinks from './services/externalLinksService';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { DepthSections } from './components/DepthSections';
+import { TensesSection } from './components/TensesSection';
+import { UsageSection } from './components/UsageSection';
+import { VerbHeader } from './components/VerbHeader';
+import { WordFamilySection } from './components/WordFamilySection';
+import { getWordDepth } from './data/depthData';
+import {
+  fetchWordOnline,
+  getSavedWordByLemma,
+  getSavedWordsList,
+  isWordSavedLocally,
+  loadUserSavedWords,
+  removeWordFromLocal,
+  saveWordToLocal,
+} from './services/hybridDictionaryService';
+import { findVerb, searchWords } from './services/searchService';
+import { speakEnglish } from './services/speechService';
 
-const TOP_SAFE_MARGIN = Platform.OS === 'android' ? (StatusBar.currentHeight || 28) + 12 : 12;
+const QUICK_PICKS = ['satisfy', 'decide', 'look', 'take', 'make', 'get', 'give', 'keep'];
 
 export default function App() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedWord, setSelectedWord] = useState<any | null>(null);
-  const [activeTenseGroup, setActiveTenseGroup] = useState<'present' | 'past' | 'future'>('present');
-  const [accent, setAccent] = useState<AccentType>('en-US');
+  const [query, setQuery] = useState('');
+  const [savedWords, setSavedWords] = useState<any[]>([]);
+  const [onlineResult, setOnlineResult] = useState<{ verb: any; depth: any } | null>(null);
+  const [loadingOnline, setLoadingOnline] = useState(false);
+  const [onlineError, setOnlineError] = useState(false);
+  const [refreshTick, setRefreshTick] = useState(0);
 
-  const displayedWords = searchWords(searchQuery);
+  // Uygulama açıldığında kullanıcının lokale kaydettiği kelimeleri yükle
+  useEffect(() => {
+    loadUserSavedWords().then(() => {
+      setSavedWords(getSavedWordsList());
+    });
+  }, [refreshTick]);
 
-  const handleSpeak = (text: string, customAccent?: AccentType) => {
-    if (!text) return;
-    speakEnglish(text, customAccent || accent);
-  };
+  const cleanQuery = query.trim();
+  const localResult = findVerb(cleanQuery);
+  const savedLocalMatch = !localResult && cleanQuery ? getSavedWordByLemma(cleanQuery) : null;
 
-  const handleOpenYouGlish = (word: string) => {
-    const fn = (ExternalLinks as any).openYouGlish || (ExternalLinks as any).openYouglish;
-    if (typeof fn === 'function') {
-      fn(word);
+  // Aktif gösterilecek kelime (Önce çekirdek DB, sonra kullanıcının kaydettiği lokal DB, en son Online sonuç)
+  const activeVerb =
+    localResult?.verb ||
+    savedLocalMatch?.verb ||
+    (onlineResult?.verb?.lemma?.toLowerCase() === cleanQuery.toLowerCase()
+      ? onlineResult.verb
+      : null);
+
+  const activeMatch =
+    localResult?.match ||
+    (activeVerb
+      ? {
+          kind: 'lemma',
+          type: 'lemma',
+          matchedTerm: activeVerb.lemma,
+          matchedWord: activeVerb.lemma,
+        }
+      : null);
+
+  const activeDepth =
+    savedLocalMatch?.depth ||
+    (onlineResult?.verb?.lemma?.toLowerCase() === activeVerb?.lemma?.toLowerCase()
+      ? onlineResult?.depth
+      : undefined) ||
+    getWordDepth(activeVerb);
+
+  const hasQuery = cleanQuery.length > 0;
+  const suggestions = hasQuery && !activeVerb ? searchWords(cleanQuery).slice(0, 6) : [];
+  const isSaved = isWordSavedLocally(activeVerb?.lemma);
+
+  // Lokal veritabanında bulunamayan kelimeler için otomatik veya butonla Online arama
+  const handleOnlineSearch = async (wordToFetch: string) => {
+    const target = wordToFetch.trim();
+    if (!target) return;
+    setLoadingOnline(true);
+    setOnlineError(false);
+    const fetched = await fetchWordOnline(target);
+    setLoadingOnline(false);
+    if (fetched) {
+      setOnlineResult(fetched);
     } else {
-      Linking.openURL(`https://youglish.com/pronounce/${encodeURIComponent(word)}/english`);
+      setOnlineError(true);
     }
   };
 
-  const handleOpenCambridge = (word: string) => {
-    const fn = (ExternalLinks as any).openCambridge || (ExternalLinks as any).openCambridgeDictionary;
-    if (typeof fn === 'function') {
-      fn(word);
+  const handleToggleSaveLocal = async () => {
+    if (!activeVerb) return;
+    if (isSaved) {
+      await removeWordFromLocal(activeVerb.lemma);
     } else {
-      Linking.openURL(`https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(word)}`);
+      await saveWordToLocal(activeVerb, activeDepth);
     }
+    setSavedWords(getSavedWordsList());
+    setRefreshTick((t) => t + 1);
   };
 
-  // DETAY EKRANI
-  if (selectedWord) {
-    const filteredTenses = selectedWord.tenses?.filter((t: any) => t.time === activeTenseGroup) || [];
+  return (
+    <SafeAreaView style={styles.safe}>
+      <StatusBar style="dark" />
 
-    return (
-      <SafeAreaView style={styles.container}>
-        <StatusBar barStyle="light-content" />
+      {/* Üst Arama Kutusu ve Hızlı Çipler */}
+      <View style={styles.searchBox}>
+        <TextInput
+          value={query}
+          onChangeText={(text) => {
+            setQuery(text);
+            setOnlineError(false);
+          }}
+          onSubmitEditing={() => {
+            if (!localResult && !savedLocalMatch && cleanQuery) {
+              handleOnlineSearch(cleanQuery);
+            }
+          }}
+          placeholder="Kelime ara (lokalde yoksa online çeker)..."
+          placeholderTextColor="#8A92AB"
+          autoCapitalize="none"
+          autoCorrect={false}
+          clearButtonMode="while-editing"
+          style={styles.input}
+        />
 
-        <View style={styles.topNav}>
-          <TouchableOpacity style={styles.backButton} onPress={() => setSelectedWord(null)}>
-            <Text style={styles.backButtonText}>← Arama Ekranına Dön</Text>
-          </TouchableOpacity>
-          <Text style={styles.categoryBadge}>{selectedWord.categoryType}</Text>
-        </View>
+        {/* Hızlı Seçim + Kullanıcının Lokale Kaydettiği Kelimeler */}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.quickRow}
+          keyboardShouldPersistTaps="handled"
+        >
+          {savedWords.map((sw) => {
+            const active = cleanQuery.toLowerCase() === sw.lemma.toLowerCase();
+            return (
+              <Pressable
+                key={`saved_${sw.lemma}`}
+                onPress={() => setQuery(sw.lemma)}
+                style={[styles.savedChip, active && styles.quickChipActive]}
+              >
+                <Text style={[styles.savedChipText, active && styles.quickChipTextActive]}>
+                  📌 {sw.lemma}
+                </Text>
+              </Pressable>
+            );
+          })}
 
-        <ScrollView contentContainerStyle={styles.detailContainer} showsVerticalScrollIndicator={false}>
-          <View style={styles.heroCard}>
-            <View style={styles.heroTopRow}>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.detailLemma}>{selectedWord.lemma}</Text>
-                {selectedWord.ipa && <Text style={styles.detailIpa}>{selectedWord.ipa}</Text>}
+          {QUICK_PICKS.map((word) => {
+            const active = cleanQuery.toLowerCase() === word;
+            return (
+              <Pressable
+                key={word}
+                onPress={() => setQuery(word)}
+                style={[styles.quickChip, active && styles.quickChipActive]}
+              >
+                <Text style={[styles.quickChipText, active && styles.quickChipTextActive]}>
+                  {word}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </ScrollView>
+      </View>
+
+      <ScrollView
+        key={activeVerb?.id ?? 'empty'}
+        keyboardShouldPersistTaps="handled"
+      >
+        {activeVerb && activeMatch ? (
+          <>
+            {/* 1. KULLANICI İSTEĞİ: SAYFANIN EN ÜSTÜNDE SESLENDİRME (US/UK) VE LOKALE KAYDET BARI */}
+            <View style={styles.topActionBar}>
+              <View style={styles.audioGroup}>
+                <Pressable
+                  onPress={() => speakEnglish(activeVerb.lemma, 'en-US')}
+                  style={({ pressed }) => [styles.audioBtn, pressed && styles.btnPressed]}
+                >
+                  <Text style={styles.audioBtnText}>🇺🇸 US Dinle 🔊</Text>
+                </Pressable>
+
+                <Pressable
+                  onPress={() => speakEnglish(activeVerb.lemma, 'en-GB')}
+                  style={({ pressed }) => [styles.audioBtnUk, pressed && styles.btnPressed]}
+                >
+                  <Text style={styles.audioBtnText}>🇬🇧 UK Dinle 🔊</Text>
+                </Pressable>
               </View>
 
-              {/* US ve UK Seslendirme Butonları */}
-              <View style={styles.accentButtonsRow}>
-                <TouchableOpacity
-                  style={[styles.speakButton, accent === 'en-US' && styles.activeAccentBtn]}
-                  onPress={() => {
-                    setAccent('en-US');
-                    handleSpeak(selectedWord.lemma, 'en-US');
-                  }}
-                >
-                  <Text style={styles.speakButtonText}>🇺🇸 US 🔊</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={[styles.speakButton, accent === 'en-GB' && styles.activeAccentBtn]}
-                  onPress={() => {
-                    setAccent('en-GB');
-                    handleSpeak(selectedWord.lemma, 'en-GB');
-                  }}
-                >
-                  <Text style={styles.speakButtonText}>🇬🇧 UK 🔊</Text>
-                </TouchableOpacity>
-              </View>
+              <Pressable
+                onPress={handleToggleSaveLocal}
+                style={({ pressed }) => [
+                  styles.saveLocalBtn,
+                  isSaved && styles.saveLocalBtnActive,
+                  pressed && styles.btnPressed,
+                ]}
+              >
+                <Text style={[styles.saveLocalBtnText, isSaved && styles.saveLocalBtnTextActive]}>
+                  {isSaved ? '✅ Lokalde Kayıtlı' : '📥 Lokale Ekle'}
+                </Text>
+              </Pressable>
             </View>
 
-            <Text style={styles.heroMeanings}>{selectedWord.meaningTr?.join(', ')}</Text>
+            {/* Orijinal Bileşenlerin */}
+            <VerbHeader verb={activeVerb} match={activeMatch} />
+            <WordFamilySection verb={activeVerb} match={activeMatch} />
+            <TensesSection verb={activeVerb} />
+            <UsageSection verb={activeVerb} />
+            <DepthSections lemma={activeVerb.lemma} depth={activeDepth} />
+          </>
+        ) : (
+          <View style={styles.emptyBox}>
+            {hasQuery ? (
+              <View style={styles.onlineFallbackBox}>
+                <Text style={styles.empty}>
+                  "{cleanQuery}" çevrimdışı (offline) çekirdek sözlükte bulunamadı.
+                </Text>
 
-            <View style={styles.externalLinksRow}>
-              <TouchableOpacity style={styles.youglishBtn} onPress={() => handleOpenYouGlish(selectedWord.lemma)}>
-                <Text style={styles.externalBtnText}>🎬 YouGlish</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.cambridgeBtn} onPress={() => handleOpenCambridge(selectedWord.lemma)}>
-                <Text style={styles.externalBtnText}>📖 Cambridge</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+                {/* HİBRİT YAPI: Online Sözlükten Canlı Çekme Butonu */}
+                <Pressable
+                  onPress={() => handleOnlineSearch(cleanQuery)}
+                  disabled={loadingOnline}
+                  style={({ pressed }) => [
+                    styles.onlineFetchBtn,
+                    pressed && styles.btnPressed,
+                  ]}
+                >
+                  {loadingOnline ? (
+                    <ActivityIndicator color="#FFFFFF" />
+                  ) : (
+                    <Text style={styles.onlineFetchBtnText}>
+                      🌐 "{cleanQuery}" Kelimesini Online Sözlükten Getir
+                    </Text>
+                  )}
+                </Pressable>
 
-          {/* V1 - V2 - V3 Çekim Formları */}
-          {selectedWord.forms && selectedWord.forms.v1 && (
-            <View style={styles.sectionBox}>
-              <Text style={styles.sectionTitle}>Fiil Halleri (Dinlemek için dokun)</Text>
-              <View style={styles.formsGrid}>
-                <TouchableOpacity style={styles.formItem} onPress={() => handleSpeak(selectedWord.forms.v1)}>
-                  <Text style={styles.formLabel}>V1 (Yalın)</Text>
-                  <Text style={styles.formValue}>{selectedWord.forms.v1} 🔊</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.formItem} onPress={() => handleSpeak(selectedWord.forms.v2)}>
-                  <Text style={styles.formLabel}>V2 (Past)</Text>
-                  <Text style={styles.formValue}>{selectedWord.forms.v2} 🔊</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.formItem} onPress={() => handleSpeak(selectedWord.forms.v3)}>
-                  <Text style={styles.formLabel}>V3 (Participle)</Text>
-                  <Text style={styles.formValue}>{selectedWord.forms.v3} 🔊</Text>
-                </TouchableOpacity>
-                {selectedWord.forms.presentParticiple && (
-                  <TouchableOpacity style={styles.formItem} onPress={() => handleSpeak(selectedWord.forms.presentParticiple)}>
-                    <Text style={styles.formLabel}>V-ing</Text>
-                    <Text style={styles.formValue}>{selectedWord.forms.presentParticiple} 🔊</Text>
-                  </TouchableOpacity>
+                {onlineError && (
+                  <Text style={styles.errorText}>
+                    Online veritabanında "{cleanQuery}" için kayıt bulunamadı veya internet bağlantısı yok.
+                  </Text>
                 )}
               </View>
-            </View>
-          )}
-
-          {/* 13 Zaman Tablosu */}
-          {selectedWord.tenses && selectedWord.tenses.length > 0 && (
-            <View style={styles.sectionBox}>
-              <Text style={styles.sectionTitle}>Zaman Tablosu (13 Tense & Formüller)</Text>
-
-              <View style={styles.tenseGroupTabs}>
-                {(['present', 'past', 'future'] as const).map(grp => (
-                  <TouchableOpacity
-                    key={grp}
-                    style={[styles.tenseTab, activeTenseGroup === grp && styles.activeTenseTab]}
-                    onPress={() => setActiveTenseGroup(grp)}
-                  >
-                    <Text style={[styles.tenseTabText, activeTenseGroup === grp && styles.activeTenseTabText]}>
-                      {grp === 'present' ? 'Present (4)' : grp === 'past' ? 'Past (4)' : 'Future (5)'}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-
-              {filteredTenses.map((t: any) => (
-                <View key={t.id} style={styles.tenseCard}>
-                  <View style={styles.tenseHeaderRow}>
-                    <Text style={styles.tenseName}>{t.name}</Text>
-                    <Text style={styles.tenseNameTr}>{t.nameTr}</Text>
-                  </View>
-                  <Text style={styles.formulaText}>📐 Formül: {t.formula}</Text>
-
-                  <View style={styles.conjugationBlock}>
-                    <Text style={styles.conjTypeTitle}>➕ Olumlu (Dinlemek için cümleye dokun)</Text>
-                    <TouchableOpacity onPress={() => handleSpeak(t.forms.affirmative.I)}>
-                      <Text style={styles.conjLine}>• {t.forms.affirmative.I} 🔊</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSpeak(t.forms.affirmative.heSheIt)}>
-                      <Text style={styles.conjLine}>• {t.forms.affirmative.heSheIt} 🔊</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSpeak(t.forms.affirmative.youWeThey)}>
-                      <Text style={styles.conjLine}>• {t.forms.affirmative.youWeThey} 🔊</Text>
-                    </TouchableOpacity>
-                  </View>
-
-                  <View style={styles.conjugationBlock}>
-                    <Text style={styles.conjTypeTitle}>➖ Olumsuz (Negative)</Text>
-                    <TouchableOpacity onPress={() => handleSpeak(t.forms.negative.I)}>
-                      <Text style={styles.conjLine}>• {t.forms.negative.I} 🔊</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSpeak(t.forms.negative.heSheIt)}>
-                      <Text style={styles.conjLine}>• {t.forms.negative.heSheIt} 🔊</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSpeak(t.forms.negative.youWeThey)}>
-                      <Text style={styles.conjLine}>• {t.forms.negative.youWeThey} 🔊</Text>
-                    </TouchableOpacity>
-                  </View>
-
-                  <View style={styles.conjugationBlock}>
-                    <Text style={styles.conjTypeTitle}>❓ Soru (Interrogative)</Text>
-                    <TouchableOpacity onPress={() => handleSpeak(t.forms.interrogative.I)}>
-                      <Text style={styles.conjLine}>• {t.forms.interrogative.I} 🔊</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSpeak(t.forms.interrogative.heSheIt)}>
-                      <Text style={styles.conjLine}>• {t.forms.interrogative.heSheIt} 🔊</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSpeak(t.forms.interrogative.youWeThey)}>
-                      <Text style={styles.conjLine}>• {t.forms.interrogative.youWeThey} 🔊</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ))}
-            </View>
-          )}
-
-          {/* Senses */}
-          {selectedWord.senses && selectedWord.senses.length > 0 && (
-            <View style={styles.sectionBox}>
-              <Text style={styles.sectionTitle}>Anlam Katmanları & Örnek Cümleler</Text>
-              {selectedWord.senses.map((sense: any, idx: number) => (
-                <View key={idx} style={styles.senseCard}>
-                  <Text style={styles.senseTitle}>{sense.titleTr}</Text>
-                  {sense.descriptionTr && <Text style={styles.senseDesc}>{sense.descriptionTr}</Text>}
-                  <TouchableOpacity onPress={() => handleSpeak(sense.exampleEn)}>
-                    <Text style={styles.exampleEn}>🇬🇧 {sense.exampleEn} 🔊</Text>
-                  </TouchableOpacity>
-                  <Text style={styles.exampleTr}>🇹🇷 {sense.exampleTr}</Text>
-                </View>
-              ))}
-            </View>
-          )}
-
-          {/* Word Family */}
-          {selectedWord.wordFamily && selectedWord.wordFamily.length > 0 && (
-            <View style={styles.sectionBox}>
-              <Text style={styles.sectionTitle}>Kelime Ailesi (Word Family)</Text>
-              {selectedWord.wordFamily.map((fam: any, idx: number) => (
-                <View key={idx} style={styles.familyCard}>
-                  <View style={styles.familyTopRow}>
-                    <TouchableOpacity onPress={() => handleSpeak(fam.word)}>
-                      <Text style={styles.familyWord}>{fam.word} ({fam.partOfSpeech}) 🔊</Text>
-                    </TouchableOpacity>
-                    <Text style={styles.familyMeaning}>{fam.meaningTr}</Text>
-                  </View>
-                  {fam.exampleEn && (
-                    <TouchableOpacity onPress={() => handleSpeak(fam.exampleEn)}>
-                      <Text style={styles.exampleEn}>🇬🇧 {fam.exampleEn} 🔊</Text>
-                    </TouchableOpacity>
-                  )}
-                  {fam.exampleTr && <Text style={styles.exampleTr}>🇹🇷 {fam.exampleTr}</Text>}
-                </View>
-              ))}
-            </View>
-          )}
-
-          {/* Phrasal Verbs */}
-          {selectedWord.phrasalVerbs && selectedWord.phrasalVerbs.length > 0 && (
-            <View style={styles.sectionBox}>
-              <Text style={styles.sectionTitle}>Phrasal Verbs (Deyimsel Fiiller)</Text>
-              {selectedWord.phrasalVerbs.map((pv: any, idx: number) => (
-                <View key={idx} style={styles.subItemCard}>
-                  <TouchableOpacity onPress={() => handleSpeak(pv.phrase)}>
-                    <Text style={styles.subItemTitle}>{pv.phrase} 🔊 — {pv.meaningTr}</Text>
-                  </TouchableOpacity>
-                  {pv.exampleEn && (
-                    <TouchableOpacity onPress={() => handleSpeak(pv.exampleEn)}>
-                      <Text style={styles.exampleEn}>🇬🇧 {pv.exampleEn} 🔊</Text>
-                    </TouchableOpacity>
-                  )}
-                  {pv.exampleTr && <Text style={styles.exampleTr}>🇹🇷 {pv.exampleTr}</Text>}
-                </View>
-              ))}
-            </View>
-          )}
-
-          {/* Idioms */}
-          {selectedWord.idioms && selectedWord.idioms.length > 0 && (
-            <View style={styles.sectionBox}>
-              <Text style={styles.sectionTitle}>Deyimler ve Kalıplar (Idioms)</Text>
-              {selectedWord.idioms.map((idm: any, idx: number) => (
-                <View key={idx} style={styles.subItemCard}>
-                  <TouchableOpacity onPress={() => handleSpeak(idm.idiom)}>
-                    <Text style={styles.subItemTitle}>{idm.idiom} 🔊 — {idm.meaningTr}</Text>
-                  </TouchableOpacity>
-                  {idm.exampleEn && (
-                    <TouchableOpacity onPress={() => handleSpeak(idm.exampleEn)}>
-                      <Text style={styles.exampleEn}>🇬🇧 {idm.exampleEn} 🔊</Text>
-                    </TouchableOpacity>
-                  )}
-                  {idm.exampleTr && <Text style={styles.exampleTr}>🇹🇷 {idm.exampleTr}</Text>}
-                </View>
-              ))}
-            </View>
-          )}
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
-
-  // ANA ARAMA EKRANI
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" />
-      <View style={styles.headerBox}>
-        <Text style={styles.headerTitle}>360° İngilizce Morfoloji & Sözlük</Text>
-        <Text style={styles.headerSub}>Toplam {ALL_WORDS.length} kelime, fiil ve kalıp hazır</Text>
-      </View>
-
-      <View style={styles.searchRow}>
-        <TextInput
-          style={styles.searchBar}
-          placeholder="Kelime, V2/V3 hali veya Türkçe anlam ara..."
-          placeholderTextColor="#777"
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-          autoCapitalize="none"
-        />
-        {searchQuery.length > 0 && (
-          <TouchableOpacity style={styles.clearBtn} onPress={() => setSearchQuery('')}>
-            <Text style={styles.clearBtnText}>✕</Text>
-          </TouchableOpacity>
-        )}
-      </View>
-
-      <FlatList
-        data={displayedWords}
-        keyExtractor={(item, index) => `${item.id || item.lemma}_${index}`}
-        keyboardShouldPersistTaps="handled"
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.wordCard}
-            onPress={() => {
-              Keyboard.dismiss();
-              setSelectedWord(item);
-            }}
-          >
-            <View style={styles.wordCardHeader}>
-              <View style={styles.wordTitleRow}>
-                <Text style={styles.wordLemma}>{item.lemma}</Text>
-                {item.ipa && <Text style={styles.wordIpa}>{item.ipa}</Text>}
-              </View>
-              <Text style={styles.categoryBadge}>{item.categoryType}</Text>
-            </View>
-
-            <Text style={styles.wordMeaning}>{item.meaningTr?.join(', ')}</Text>
-
-            {item.forms?.v1 && (
-              <Text style={styles.wordFormsPreview}>
-                V1: {item.forms.v1}  •  V2: {item.forms.v2}  •  V3: {item.forms.v3}
+            ) : (
+              <Text style={styles.empty}>
+                Başlamak için yukarıdan bir kelime seç ya da arama kutusuna istediğin bir İngilizce kelimeyi yaz.
               </Text>
             )}
-          </TouchableOpacity>
+
+            {suggestions.length > 0 && (
+              <View style={styles.suggestionList}>
+                <Text style={styles.suggestionTitle}>Lokal veritabanındaki yakın sonuçlar:</Text>
+                <View style={styles.suggestionWrap}>
+                  {suggestions.map((item) => (
+                    <Pressable
+                      key={item.id || item.lemma}
+                      onPress={() => setQuery(item.lemma)}
+                      style={styles.quickChip}
+                    >
+                      <Text style={styles.quickChipText}>
+                        {item.lemma} ({item.meaningTr?.[0]})
+                      </Text>
+                    </Pressable>
+                  ))}
+                </View>
+              </View>
+            )}
+          </View>
         )}
-        contentContainerStyle={styles.listContainer}
-        showsVerticalScrollIndicator={false}
-      />
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  safe: {
     flex: 1,
-    backgroundColor: '#121212',
+    backgroundColor: '#FFFFFF',
+  },
+  searchBox: {
+    paddingHorizontal: 20,
+    paddingTop: 12,
+    paddingBottom: 8,
+  },
+  input: {
+    height: 48,
     paddingHorizontal: 16,
-    paddingTop: TOP_SAFE_MARGIN,
+    borderRadius: 14,
+    fontSize: 16,
+    color: '#16213E',
+    backgroundColor: '#F1F3FA',
   },
-  headerBox: { marginBottom: 14 },
-  headerTitle: { fontSize: 21, fontWeight: 'bold', color: '#ffffff' },
-  headerSub: { fontSize: 13, color: '#888', marginTop: 3 },
-  searchRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 14 },
-  searchBar: {
-    flex: 1,
-    backgroundColor: '#1e1e1e',
-    color: '#ffffff',
-    paddingHorizontal: 16,
-    paddingVertical: 13,
-    borderRadius: 12,
-    fontSize: 15,
+  quickRow: {
+    paddingTop: 10,
+    gap: 8,
+  },
+  quickChip: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 999,
+    backgroundColor: '#EEF2FC',
+  },
+  savedChip: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 999,
+    backgroundColor: '#E2F3EA',
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: '#1B6B44',
   },
-  clearBtn: { position: 'absolute', right: 12, padding: 8 },
-  clearBtnText: { color: '#aaa', fontSize: 16, fontWeight: 'bold' },
-  listContainer: { paddingBottom: 30 },
-  wordCard: {
-    backgroundColor: '#1e1e1e',
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: '#2a2a2a',
+  savedChipText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#1B6B44',
   },
-  wordCardHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 },
-  wordTitleRow: { flexDirection: 'row', alignItems: 'baseline', gap: 8 },
-  wordLemma: { fontSize: 19, fontWeight: 'bold', color: '#ffffff' },
-  wordIpa: { fontSize: 13, color: '#888' },
-  categoryBadge: {
-    fontSize: 11,
-    color: '#38bdf8',
-    backgroundColor: 'rgba(56,189,248,0.12)',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 8,
+  quickChipActive: {
+    backgroundColor: '#16213E',
+  },
+  quickChipText: {
+    fontSize: 13,
     fontWeight: '600',
+    color: '#16213E',
   },
-  wordMeaning: { fontSize: 14, color: '#d4d4d8', marginBottom: 4 },
-  wordFormsPreview: { fontSize: 12, color: '#4ade80', marginTop: 4, fontWeight: '500' },
+  quickChipTextActive: {
+    color: '#FFFFFF',
+  },
 
-  topNav: {
+  /* En Üst Seslendirme & Lokale Kaydet Barı */
+  topActionBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 10,
-    marginBottom: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: '#262626',
+    flexWrap: 'wrap',
+    gap: 8,
+    paddingHorizontal: 20,
+    paddingTop: 8,
+    paddingBottom: 4,
   },
-  backButton: {
-    backgroundColor: '#262626',
-    paddingHorizontal: 14,
-    paddingVertical: 10,
+  audioGroup: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  audioBtn: {
+    backgroundColor: '#16213E',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 10,
+  },
+  audioBtnUk: {
+    backgroundColor: '#2563EB',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 10,
+  },
+  audioBtnText: {
+    color: '#FFFFFF',
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  saveLocalBtn: {
+    backgroundColor: '#EEF2FC',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#3f3f46',
+    borderColor: '#16213E',
   },
-  backButtonText: { color: '#ffffff', fontSize: 14, fontWeight: '600' },
-  detailContainer: { paddingBottom: 50, paddingTop: 6 },
-  heroCard: {
-    backgroundColor: '#1e1e1e',
-    padding: 18,
+  saveLocalBtnActive: {
+    backgroundColor: '#E2F3EA',
+    borderColor: '#1B6B44',
+  },
+  saveLocalBtnText: {
+    color: '#16213E',
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  saveLocalBtnTextActive: {
+    color: '#1B6B44',
+  },
+  btnPressed: {
+    opacity: 0.8,
+  },
+
+  emptyBox: {
+    paddingHorizontal: 20,
+    paddingTop: 24,
+  },
+  onlineFallbackBox: {
+    gap: 14,
+  },
+  empty: {
+    fontSize: 15,
+    lineHeight: 22,
+    color: '#5B6480',
+  },
+  onlineFetchBtn: {
+    backgroundColor: '#16213E',
+    paddingVertical: 14,
+    paddingHorizontal: 16,
     borderRadius: 14,
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: '#333',
-  },
-  heroTopRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 8 },
-  detailLemma: { fontSize: 30, fontWeight: 'bold', color: '#ffffff' },
-  detailIpa: { fontSize: 15, color: '#a1a1aa', marginTop: 2 },
-  accentButtonsRow: { flexDirection: 'row', gap: 6 },
-  speakButton: {
-    backgroundColor: '#27272a',
-    paddingHorizontal: 10,
-    paddingVertical: 9,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#3f3f46',
-  },
-  activeAccentBtn: {
-    backgroundColor: '#2563eb',
-    borderColor: '#60a5fa',
-  },
-  speakButtonText: { color: '#ffffff', fontWeight: 'bold', fontSize: 13 },
-  heroMeanings: { fontSize: 17, color: '#e4e4e7', marginTop: 12, marginBottom: 14, fontWeight: '500' },
-  externalLinksRow: { flexDirection: 'row', gap: 10 },
-  youglishBtn: {
-    flex: 1,
-    backgroundColor: '#b91c1c',
-    paddingVertical: 10,
-    borderRadius: 8,
     alignItems: 'center',
   },
-  cambridgeBtn: {
-    flex: 1,
-    backgroundColor: '#1d4ed8',
-    paddingVertical: 10,
-    borderRadius: 8,
-    alignItems: 'center',
+  onlineFetchBtnText: {
+    color: '#FFFFFF',
+    fontSize: 15,
+    fontWeight: '700',
   },
-  externalBtnText: { color: '#ffffff', fontWeight: '600', fontSize: 13 },
-
-  sectionBox: {
-    backgroundColor: '#1e1e1e',
-    padding: 16,
-    borderRadius: 14,
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: '#2e2e2e',
+  errorText: {
+    color: '#B91C1C',
+    fontSize: 13,
+    lineHeight: 19,
   },
-  sectionTitle: { fontSize: 16, fontWeight: 'bold', color: '#38bdf8', marginBottom: 12 },
-  formsGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  formItem: {
-    flex: 1,
-    minWidth: '45%',
-    backgroundColor: '#27272a',
-    padding: 10,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#3f3f46',
+  suggestionList: {
+    marginTop: 20,
+    gap: 8,
   },
-  formLabel: { fontSize: 11, color: '#a1a1aa', marginBottom: 2 },
-  formValue: { fontSize: 15, fontWeight: 'bold', color: '#4ade80' },
-
-  tenseGroupTabs: { flexDirection: 'row', gap: 8, marginBottom: 12 },
-  tenseTab: {
-    flex: 1,
-    backgroundColor: '#27272a',
-    paddingVertical: 9,
-    borderRadius: 8,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#3f3f46',
+  suggestionTitle: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#5B6480',
   },
-  activeTenseTab: { backgroundColor: '#0284c7', borderColor: '#38bdf8' },
-  tenseTabText: { color: '#a1a1aa', fontSize: 13, fontWeight: '600' },
-  activeTenseTabText: { color: '#ffffff' },
-
-  tenseCard: {
-    backgroundColor: '#262626',
-    padding: 14,
-    borderRadius: 10,
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: '#363636',
+  suggestionWrap: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
   },
-  tenseHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 },
-  tenseName: { fontSize: 15, fontWeight: 'bold', color: '#fb923c' },
-  tenseNameTr: { fontSize: 12, color: '#a1a1aa' },
-  formulaText: { fontSize: 13, color: '#38bdf8', fontWeight: '600', marginBottom: 10 },
-  conjugationBlock: { marginBottom: 8 },
-  conjTypeTitle: { fontSize: 12, fontWeight: 'bold', color: '#d4d4d8', marginBottom: 2 },
-  conjLine: { fontSize: 13, color: '#e4e4e7', paddingLeft: 4, lineHeight: 22 },
-
-  senseCard: { marginBottom: 12, borderBottomWidth: 1, borderBottomColor: '#2e2e2e', paddingBottom: 10 },
-  senseTitle: { fontSize: 15, fontWeight: 'bold', color: '#ffffff', marginBottom: 2 },
-  senseDesc: { fontSize: 13, color: '#a1a1aa', marginBottom: 6 },
-  exampleEn: { fontSize: 14, color: '#4ade80', fontStyle: 'italic', marginTop: 4 },
-  exampleTr: { fontSize: 13, color: '#a1a1aa', marginTop: 2 },
-
-  familyCard: { backgroundColor: '#262626', padding: 10, borderRadius: 8, marginBottom: 8 },
-  familyTopRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  familyWord: { color: '#ffffff', fontWeight: 'bold', fontSize: 14 },
-  familyMeaning: { color: '#fbbf24', fontSize: 13, fontWeight: '600' },
-
-  subItemCard: { backgroundColor: '#262626', padding: 10, borderRadius: 8, marginBottom: 8 },
-  subItemTitle: { color: '#ffffff', fontWeight: 'bold', fontSize: 14, marginBottom: 2 },
 });
